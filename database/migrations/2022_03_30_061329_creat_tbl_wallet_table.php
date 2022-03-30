@@ -16,7 +16,7 @@ class CreatTblWalletTable extends Migration
     {
         Schema::create('tbl_wallet', function (Blueprint $table) {
             $table->id();
-            $table->float('wallet_balance');
+            $table->double('wallet_balance');
             $table->timestamps();
         });
     }

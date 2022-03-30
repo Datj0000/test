@@ -22,7 +22,7 @@ class CreatTblCustomerTable extends Migration
             $table->string('customer_pass');
             $table->string('customer_image')->nullable();
             $table->string('customer_token')->nullable();
-            $table->float('customer_balance')->default(0);
+            $table->double('customer_balance')->default(0);
             $table->integer('customer_role')->default(0);
             $table->timestamps();
         });

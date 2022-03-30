@@ -16,7 +16,7 @@ class CreatTblSettingTable extends Migration
         Schema::create('tbl_setting', function (Blueprint $table) {
             $table->id();
             $table->string('wallet_address');
-            $table->float('wallet_balance');
+            $table->double('wallet_balance');
             $table->timestamps();
         });
     }

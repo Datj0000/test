@@ -20,7 +20,7 @@ class CreatTblRechargeTable extends Migration
             $table->string('tran_from');
             $table->string('tran_to');
             $table->integer('customer_id');
-            $table->float('amount');
+            $table->double('amount');
             $table->timestamps();
         });
     }

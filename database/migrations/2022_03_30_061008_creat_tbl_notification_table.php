@@ -17,7 +17,7 @@ class CreatTblNotificationTable extends Migration
         Schema::create('tbl_notification', function (Blueprint $table) {
             $table->id();
             $table->integer('notification_status');
-            $table->float('notification_amount');
+            $table->double('notification_amount');
             $table->integer('customer_id');
             $table->timestamps();
         });

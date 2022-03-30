@@ -56,8 +56,8 @@
             wallet_address: wallet_address,
         })
         .then(function (response) {
-            $('#wallet_balance').val(response.data.data.wallet_balance+ " FPI");
-            $('#wallet_address').val(response.data.data.wallet_address);
+            $('#wallet_balance').val(response.data.wallet_balance+ " FPI");
+            $('#wallet_address').val(response.data.wallet_address);
             validation.validate();
         })
         .catch((error) => {

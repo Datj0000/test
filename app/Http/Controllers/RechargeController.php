@@ -24,9 +24,7 @@ class RechargeController extends Controller
     {
         $all = Recharge::join('tbl_customer', 'tbl_customer.customer_id', '=', 'tbl_recharge.customer_id')
         ->where('tbl_recharge.recharge_id', $recharge_id)->first();
-        return response()->json([
-            "data" => $all,
-        ]);
+        return response()->json($all);
     }
     public function create(Request $request)
     {

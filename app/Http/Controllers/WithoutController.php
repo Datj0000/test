@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Without;
+use App\Models\Customer;
+use Illuminate\Support\Facades\Session;
 
 class WithoutController extends Controller
 {
@@ -12,38 +15,34 @@ class WithoutController extends Controller
     }
     public function fetchdata()
     {
-        $all = without::join('tbl_customer', 'tbl_customer.customer_id', '=', 'tbl_without.customer_id')->get();
-        return response()->json([
-            "data" => $all,
-        ]);
-    }
-    public function view_detail($without_id)
-    {
-        $all = without::join('tbl_customer', 'tbl_customer.customer_id', '=', 'tbl_without.customer_id')
-        ->where('tbl_without.without_id', $without_id)->first();
+        $all = Without::join('tbl_customer', 'tbl_customer.customer_id', '=', 'tbl_without.customer_id')->get();
         return response()->json([
             "data" => $all,
         ]);
     }
     public function create(Request $request)
     {
-        $data = $request->all();
-        $customer_id = Session::get('customer_id');
-        $without = new without();
-        $without->customer_id = $customer_id;
-        $without->txHash = $data['txHash'];
-        $without->amount = $data['amount'];
-        $without->tran_from = $data['from'];
-        $without->tran_to = $data['to'];
-        $without->save();
-        $customer = Customer::where('customer_id', $customer_id)->first();
-        $customer->customer_balance += $data['amount'];
-        Session::put('customer_balance', $customer->customer_balance);
-        $customer->save();
+        $amount = $request->amount;
+        $balance = Session::get('customer_balance');
+        if($balance >= $amount){
+            $address_to = $request->address_to;
+            $command = "/bin/python3.9 /var/www/sendtoken.py $amount $address_to";
+            if(shell_exec($command) == 'success'){
+                $customer_id = Session::get('customer_id');
+                $customer = Customer::where('customer_id', $customer_id)->first();
+                $customer->customer_balance -= $amount;
+                $customer->save();
+                Session::put('customer_balance', $customer->customer_balance);
+            }
+            echo shell_exec($command);
+        }
+        else{
+            echo 1;
+        }
     }
     public function delete($without_id)
     {
-        $without = without::where('without_id', $without_id)->first();
+        $without = Without::where('without_id', $without_id)->first();
         $without->delete();
     }
 }

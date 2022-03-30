@@ -129,13 +129,13 @@
             var recharge_id = $(this).data('id_recharge');
             axios.get('view-recharge/' + recharge_id)
             .then(function (response) {
-                $('#customer_name').val(response.data.data.customer_name);
-                $('#customer_email').val(response.data.data.customer_email);
-                $('#customer_phone').val(response.data.data.customer_phone);
-                $('#tran_from').val(response.data.data.tran_from);
-                $('#tran_to').val(response.data.data.tran_to);
-                $('#txHash').val(response.data.data.txHash);
-                $('#amount').val(response.data.data.amount);
+                $('#customer_name').val(response.data.customer_name);
+                $('#customer_email').val(response.data.customer_email);
+                $('#customer_phone').val(response.data.customer_phone);
+                $('#tran_from').val(response.data.tran_from);
+                $('#tran_to').val(response.data.tran_to);
+                $('#txHash').val(response.data.txHash);
+                $('#amount').val(response.data.amount);
             })
             .catch((error) => {
                 console.log(error);

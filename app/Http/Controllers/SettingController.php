@@ -14,9 +14,7 @@ class SettingController extends Controller
     public function fetchdata()
     {
         $all = Setting::where('setting_id', 1)->first();
-        return response()->json([
-            "data" => $all,
-        ]);
+        return response()->json($all);
     }
     public function update(Request $request)
     {

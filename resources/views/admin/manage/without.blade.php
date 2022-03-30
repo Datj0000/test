@@ -6,56 +6,6 @@
             </h3>
         </div>
     </div>
-    <div class="modal fade" id="exampleModalPopovers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{__('lang.decentralization')}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i aria-hidden="true" class="ki ki-close"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="form">
-                        <div class="card-body">
-                            <div class="form-group">
-                                <label>{{__('lang.fullname')}}:</label>
-                                <input id="customer_name" readonly type="text"
-                                    class="form-control form-control-solid" />
-                            </div>
-                            <div class="form-group">
-                                <label>Email:</label>
-                                <input id="customer_email" readonly type="text"
-                                    class="form-control form-control-solid" />
-                            </div>
-                            <div class="form-group">
-                                <label>{{__('lang.phone')}}:</label>
-                                <input id="customer_phone" readonly type="text"
-                                    class="form-control form-control-solid" />
-                            </div>
-                            <div class="form-group">
-                                <label>{{__('lang.tran_from')}}:</label>
-                                <input id="tran_from" readonly type="text" class="form-control form-control-solid" />
-                            </div>
-                            <div class="form-group">
-                                <label>{{__('lang.tran_to')}}:</label>
-                                <input id="tran_to" readonly type="text" class="form-control form-control-solid" />
-                            </div>
-                            <div class="form-group">
-                                <label>{{__('lang.txHash')}}:</label>
-                                <input id="txHash" readonly type="text" class="form-control form-control-solid" />
-                            </div>
-                            <div class="form-group">
-                                <label>{{__('lang.amount')}}:</label>
-                                <input id="amount" readonly type="text" class="form-control form-control-solid" />
-                            </div>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
     <div class="card-body">
         <table class="table table-separate table-head-custom table-checkable display nowrap" cellspacing="0"
             width="100%" id="kt_datatable">
@@ -63,6 +13,7 @@
                 <tr>
                     <th>{{__('lang.no.')}}</th>
                     <th>{{__('lang.fullname')}}</th>
+                    <th>{{__('lang.address')}} METAMASK</th>
                     <th>{{__('lang.amount')}}</th>
                     <th>{{__('lang.created_at')}}</th>
                     <th>{{__('lang.function')}}</th>
@@ -81,36 +32,36 @@
                     render: function() {
                         return i = i + 1
                     }
-                },
-                {
-                    'data': 'customer_name'
-                },
-                {
-                    'data': null,
-                    render: function(data, type, row) {
-                        return `${row.amount} FPI`;
-                    }
-                },
-                {
-                    'data': 'created_at'
-                },
-                {
-                    'data': null,
-                    sortable: false,
-                    width: '75px',
-                    overflow: 'visible',
-                    autoHide: false,
-                    render: function(data, type, row) {
-                        return `\
-                            <span data-toggle="modal" data-target="#exampleModalPopovers" data-id_without='${row.without_id}' class="view btn btn-sm btn-clean btn-icon" title="View detail">\
-								<i class="la la-eye"></i>\
-							</span>\
-                            <span data-id_without='${row.without_id}' class="delete btn btn-sm btn-clean btn-icon" title="Delete">\
-								<i class="la la-trash"></i>\
-							</span>\
-                            `
-                    }
-                },
+                    },
+                    {
+                        'data': 'customer_name'
+                    },
+                    {
+                        'data': 'without_account'
+                    },
+                    {
+                        'data': null,
+                        render: function(data, type, row) {
+                            return `${row.without_amount} FPI`;
+                        }
+                    },
+                    {
+                        'data': 'created_at'
+                    },
+                    {
+                        'data': null,
+                        sortable: false,
+                        width: '75px',
+                        overflow: 'visible',
+                        autoHide: false,
+                        render: function(data, type, row) {
+                            return `\
+                                <span data-id_without='${row.without_id}' class="delete btn btn-sm btn-clean btn-icon" title="Delete">\
+                                    <i class="la la-trash"></i>\
+                                </span>\
+                                `
+                        }
+                    },
             ],
             responsive: true,
             language: {
@@ -123,23 +74,6 @@
                 zeroRecords: "{{__('lang.zeroRecords')}}",
                 emptyTable: "{{__('lang.infoEmpty')}}",
             },
-        });
-        $(document).on('click', '.view', function(e) {
-            e.preventDefault();
-            var without_id = $(this).data('id_without');
-            axios.get('view-without/' + without_id)
-            .then(function (response) {
-                $('#customer_name').val(response.data.data.customer_name);
-                $('#customer_email').val(response.data.data.customer_email);
-                $('#customer_phone').val(response.data.data.customer_phone);
-                $('#tran_from').val(response.data.data.tran_from);
-                $('#tran_to').val(response.data.data.tran_to);
-                $('#txHash').val(response.data.data.txHash);
-                $('#amount').val(response.data.data.amount);
-            })
-            .catch((error) => {
-                console.log(error);
-            });
         });
 
         $(document).on('click', '.delete', function(e) {

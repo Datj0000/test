@@ -135,9 +135,7 @@ class CustomerController extends Controller
     {
         $customer_id = Session::get('customer_id');
         $all = Customer::where('customer_id', $customer_id)->first();
-        return response()->json([
-            "data" => $all,
-        ]);
+        return response()->json($all);
     }
     public function update_profile(Request $request)
     {
@@ -186,16 +184,13 @@ class CustomerController extends Controller
     {
         $customer_id = Session::get('customer_id');
         $data = $request->all();
-        $customer = Customer::where('customer_id', $customer_id)
-        ->where('customer_pass', $data['old_pass'])->first();
-        if ($check_pass) {
+        $customer = Customer::where('customer_id', $customer_id)->where('customer_pass', $data['old_pass'])->first();
+        if ($customer) {
             echo 0;
         } else {
             $customer->customer_pass = $data['new_pass'];
-            $result = $customer->save();
-            if ($result) {
-                echo 1;
-            }
+            $customer->save();
+            echo 1;
         }
     }
     public function resset_pass(Request $request)

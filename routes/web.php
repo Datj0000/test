@@ -69,7 +69,6 @@ Route::get('/load-recharge',[RechargeController::class,'load_recharge']);
 Route::get('/all-without',[WithoutController::class,'view']);
 Route::get('/fetchdata-without',[WithoutController::class,'fetchdata']);
 Route::post('/create-without',[WithoutController::class,'create']);
-Route::get('/update-without/{without_id}',[WithoutController::class,'update']);
 Route::get('/delete-without/{without_id}',[WithoutController::class,'delete']);
 //Attendance
 Route::get('/attendance/{buypackage_id}',[AttendanceController::class,'create']);

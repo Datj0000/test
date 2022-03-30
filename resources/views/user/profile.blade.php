@@ -280,9 +280,9 @@
     function load_profile(){
         axios.get("load-profile-user")
             .then(function (response) {
-                $('#name').val(response.data.data.customer_name);
-                $('#email').val(response.data.data.customer_email);
-                $('#phone').val(response.data.data.customer_phone);
+                $('#name').val(response.data.customer_name);
+                $('#email').val(response.data.customer_email);
+                $('#phone').val(response.data.customer_phone);
             })
             .catch((error) => {
                 console.log(error);

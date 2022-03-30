@@ -68,36 +68,31 @@
                         </ul>
                         <div class="menu_side_area">
                             <?php
-                                $customer_id = Session::get('customer_id');
-                                $customer_name = Session::get('customer_name');
-                                $customer_image = Session::get('customer_image');
-                                $customer_type = Session::get('customer_type');
-                                if(isset($customer_id)){
+                            $customer_id = Session::get('customer_id');
+                            $customer_name = Session::get('customer_name');
+                            $customer_image = Session::get('customer_image');
+                            if(isset($customer_id)){
                             ?>
                             <div class="de-login-menu">
-                                <span id="de-click-menu-notification" class="de-menu-notification">
-                                    {{-- <span class="d-count">8</span> --}}
-                                    <i class="fa fa-bell"></i>
-                                </span>
+                        <span id="de-click-menu-notification" class="de-menu-notification">
+                            {{-- <span class="d-count">8</span> --}}
+                            <i class="fa fa-bell"></i>
+                        </span>
 
                                 <span id="de-click-menu-profile" class="de-menu-profile">
-                                    <?php
-                                        $customer_image = Session::get('customer_image');
-                                        if(isset($customer_image) && isset($customer_type)){
+                            <?php
+                                    $customer_image = Session::get('customer_image');
+                                    if(isset($customer_image)){
                                     ?>
-                                        <img src="{{ $customer_image}}" class="img-fluid" alt="">
-                                    <?php
-                                        }else if(isset($customer_image)){
-                                        ?>
-                                        <img src="{{ asset('uploads/avatar/' . $customer_image . '')}}" class="img-fluid" alt="">
-                                    <?php
-                                        }else{
+                                <img src="{{ asset('uploads/avatar/' . $customer_image . '')}}" class="img-fluid" alt="">
+                            <?php
+                                    }else{
                                     ?>
-                                        <img src="{{ asset('backend/media/users/blank.png')}}" class="img-fluid" alt="">
-                                    <?php
-                                        }
+                                <img src="{{ asset('backend/media/users/blank.png')}}" class="img-fluid" alt="">
+                            <?php
+                                    }
                                     ?>
-                                </span>
+                        </span>
 
                                 <div id="de-submenu-notification" class="de-submenu">
                                     <div class="de-flex">
@@ -129,14 +124,7 @@
                                     <ul class="de-submenu-profile">
                                         <li><a href="{{ URL::to('/history') }}"><i class="fa fa-history"></i> Transaction history</a>
                                         <li><a href="{{ URL::to('/profile') }}"><i class="fa fa-user"></i> Edit profile</a>
-                                        <?php
-                                            $check_pass = Session::get('customer_pass');
-                                            if($check_pass){
-                                        ?>
-                                            <li><a href="{{ URL::to('/changepass') }}"><i class="fa fa-pencil"></i> Change your password</a>
-                                        <?php
-                                        }
-                                        ?>
+                                        <li><a href="{{ URL::to('/changepass') }}"><i class="fa fa-pencil"></i> Change your password</a>
                                         <li><a href="#" id="logout"><i class="fa fa-sign-out"></i> Sign out</a>
                                     </ul>
                                 </div>
@@ -144,7 +132,7 @@
                             <?php
                             }
                             else {
-                                ?>
+                            ?>
                             <a href="{{ URL::to('/login') }}" class="btn-main btn-wallet"><i
                                     class="icon_wallet_alt"></i><span>Login</span></a>
                             <a href="{{ URL::to('/register') }}" class="btn-main btn-wallet"><i

@@ -17,18 +17,18 @@ class BuyPackageController extends Controller
         $buypackage = new BuyPackage();
         $buypackage->customer_id = $customer_id;
         $buypackage->package = $package;
-
-        $check = BuyPackage::where('customer_id',$customer_id)->where('status',0)->orderBy('buypackage_id', 'DESC')->first();
-        $check_balance = Customer::where('customer_id',$customer_id)->first();
+        $buypackage->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+        $check = BuyPackage::query()->where('customer_id','=',$customer_id)->where('status','=',0)->orderBy('id', 'DESC')->first();
+        $customer = Customer::query()->where('id',$customer_id)->first();
         if($check){
-            $nextweek = Carbon::parse($check->created_at)->addDays(7);
-            $check_date = BuyPackage::where('customer_id',$customer_id)->where('status',0)->where('created_at','>',$nextweek)->first();
+            $nextweek = Carbon::parse($check->created_at)->addWeek();
+            $check_date = BuyPackage::query()->where('customer_id','=',$customer_id)->where('status','=',0)->where('created_at','>',$nextweek)->first();
             if($check_date){
-                if($check_balance->customer_balance >= $package){
-                    $check_balance->customer_balance -= $package;
-                    $check_balance->save();
+                if($customer->customer_balance >= $package){
+                    $customer->customer_balance -= $package;
+                    $customer->save();
                     $buypackage->save();
-                    Session::put('customer_balance', $check_balance->customer_balance);
+                    Session::put('customer_balance', $customer->customer_balance);
                     echo 0;
                 }
                 else{
@@ -40,11 +40,11 @@ class BuyPackageController extends Controller
             }
         }
         else{
-            if($check_balance->customer_balance >= $package){
+            if($customer->customer_balance >= $package){
                 $buypackage->save();
-                $check_balance->customer_balance -= $package;
-                $check_balance->save();
-                Session::put('customer_balance', $check_balance->customer_balance);
+                $customer->customer_balance -= $package;
+                $customer->save();
+                Session::put('customer_balance', $customer->customer_balance);
                 echo 0;
             }
             else{
@@ -55,7 +55,7 @@ class BuyPackageController extends Controller
     public function load_package(){
         $i = 1;
         $customer_id = Session::get('customer_id');
-        $buypackage = BuyPackage::where('customer_id',$customer_id)->get();
+        $buypackage = BuyPackage::query()->where('customer_id','=',$customer_id)->get();
         $output = '<table class="table">
                     <thead>
                         <tr>
@@ -93,14 +93,14 @@ class BuyPackageController extends Controller
     }
     public function fetchdata()
     {
-        $all = BuyPackage::join('tbl_customer', 'tbl_customer.customer_id', '=', 'tbl_buypackage.customer_id')->get();
+        $all = BuyPackage::query()->join('tbl_customer', 'tbl_customer.id', '=', 'tbl_buypackage.customer_id')->get();
         return response()->json([
             "data" => $all,
         ]);
     }
-    public function delete($buypackage_id)
+    public function delete($id)
     {
-        $buypackage = BuyPackage::where('buypackage_id', $buypackage_id)->first();
+        $buypackage = BuyPackage::query()->where('id','=', $id)->first();
         $buypackage->delete();
     }
 }

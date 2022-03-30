@@ -7,11 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Statistical extends Model
 {
-    public $timestamps = false; //set time to false
+    use HasFactory;
     protected $fillable = [
     	'statistical_time', 'statistical_quality'
     ];
-    protected $primaryKey = 'statistical_id';
  	protected $table = 'tbl_statistical';
-    use HasFactory;
 }

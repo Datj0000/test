@@ -56,7 +56,7 @@
                         autoHide: false,
                         render: function(data, type, row) {
                             return `\
-                                <span data-id_without='${row.without_id}' class="delete btn btn-sm btn-clean btn-icon" title="Delete">\
+                                <span data-id_without='${row.id}' class="delete btn btn-sm btn-clean btn-icon" title="Delete">\
                                     <i class="la la-trash"></i>\
                                 </span>\
                                 `
@@ -78,7 +78,7 @@
 
         $(document).on('click', '.delete', function(e) {
             e.preventDefault();
-            var without_id = $(this).data('id_without');
+            var id = $(this).data('id_without');
             Swal.fire({
                     title: "{{__('lang.question')}}",
                     text: "{{__('lang.are_you_sure')}}?",
@@ -89,7 +89,7 @@
                 })
                 .then(function(result) {
                     if (result.value) {
-                        axios.get('delete-without/' + without_id)
+                        axios.get('delete-without/' + id)
                         .then(function (response) {
                             Swal.fire({
                                 icon: "success",

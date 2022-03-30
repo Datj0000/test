@@ -70,8 +70,8 @@
     function view_profile() {
         axios.get('view-profile')
             .then(function (response) {
-                $('#name').val(response.data.data.admin_name);
-                $('#email').val(response.data.data.admin_email);
+                $('#name').val(response.data.admin_name);
+                $('#email').val(response.data.admin_email);
                 validation.validate();
             })
             .catch((error) => {

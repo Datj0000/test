@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Models\Recharge;
 use App\Models\Customer;
@@ -15,42 +16,42 @@ class RechargeController extends Controller
     }
     public function fetchdata()
     {
-        $all = Recharge::join('tbl_customer', 'tbl_customer.customer_id', '=', 'tbl_recharge.customer_id')->get();
+        $all = Recharge::query()->join('tbl_customer', 'tbl_customer.id', '=', 'tbl_recharge.customer_id')->get();
         return response()->json([
             "data" => $all,
         ]);
     }
     public function view_detail($recharge_id)
     {
-        $all = Recharge::join('tbl_customer', 'tbl_customer.customer_id', '=', 'tbl_recharge.customer_id')
-        ->where('tbl_recharge.recharge_id', $recharge_id)->first();
+        $all = Recharge::query()->join('tbl_customer', 'tbl_customer.id', '=', 'tbl_recharge.customer_id')->where('tbl_recharge.id', $recharge_id)->first();
         return response()->json($all);
     }
     public function create(Request $request)
     {
         $data = $request->all();
         $customer_id = Session::get('customer_id');
-        $Recharge = new Recharge();
-        $Recharge->customer_id = $customer_id;
-        $Recharge->txHash = $data['txHash'];
-        $Recharge->amount = $data['amount'];
-        $Recharge->tran_from = $data['from'];
-        $Recharge->tran_to = $data['to'];
-        $Recharge->save();
-        $customer = Customer::where('customer_id', $customer_id)->first();
+        $recharge = new Recharge();
+        $recharge->customer_id = $customer_id;
+        $recharge->txHash = $data['txHash'];
+        $recharge->amount = $data['amount'];
+        $recharge->tran_from = $data['from'];
+        $recharge->tran_to = $data['to'];
+        $recharge->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+        $recharge->save();
+        $customer = Customer::query()->where('customer_id','=', $customer_id)->first();
         $customer->customer_balance += $data['amount'];
         Session::put('customer_balance', $customer->customer_balance);
         $customer->save();
     }
-    public function delete($Recharge_id)
+    public function delete($id)
     {
-        $Recharge = Recharge::where('Recharge_id', $Recharge_id)->first();
-        $Recharge->delete();
+        $recharge = Recharge::query()->where('id','=', $id)->first();
+        $recharge->delete();
     }
     public function load_recharge(){
         $i = 1;
         $customer_id = Session::get('customer_id');
-        $Recharge = Recharge::where('customer_id',$customer_id)->get();
+        $recharge = Recharge::query()->where('customer_id','=',$customer_id)->get();
         $output = '<table class="table">
                     <thead>
                         <tr>
@@ -59,7 +60,7 @@ class RechargeController extends Controller
                             <th scope="col">Created at</th>
                         </tr>
                     </thead>';
-        foreach ($Recharge as $key => $item) {
+        foreach ($recharge as $key => $item) {
                 $output .= '
                     <tr>
                         <th scope="row">'.$i++.'</th>

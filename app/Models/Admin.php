@@ -9,11 +9,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class Admin extends Authenticatable
 {
-    public $timestamps = false; //set time to false
+    use HasFactory;
     protected $fillable = [
     	'admin_email', 'admin_password', 'admin_name','admin_username', 'admin_token'
     ];
-    protected $primaryKey = 'admin_id';
+    protected $primaryKey = 'id';
  	protected $table = 'tbl_admin';
 
  	public function getAuthPassword(){

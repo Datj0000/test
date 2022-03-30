@@ -1,7 +1,8 @@
 <?php
 
 return[
-    'without' => 'Rút tiền              ',
+    'without' => 'Rút tiền',
+    'recharge' => 'Nạp tiền',
     'wallet' => 'Ví',
     'wallet_balance' => 'Số dư ví',
     'wallet_address' => 'Địa chỉ ví Metamask',

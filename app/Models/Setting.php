@@ -7,11 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Setting extends Model
 {
-    public $timestamps = false; //set time to false
+    use HasFactory;
     protected $fillable = [
     	'wallet_address', 'wallet_balance'
     ];
-    protected $primaryKey = 'setting_id';
  	protected $table = 'tbl_setting';
-    use HasFactory;
 }

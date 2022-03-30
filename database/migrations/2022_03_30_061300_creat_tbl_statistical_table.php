@@ -15,9 +15,9 @@ class CreatTblStatisticalTable extends Migration
     public function up()
     {
         Schema::create('tbl_statistical', function (Blueprint $table) {
-            $table->increments('statistical_id');
+            $table->id();
             $table->integer('statistical_quantity');
-            $table->date('statistical_time')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

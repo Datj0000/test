@@ -13,7 +13,7 @@ class MailController extends Controller
     public function recover(Request $request)
     {
         $data = $request->all();
-        $admin = Admin::where('admin_username', $data['admin_username'])->first();
+        $admin = Admin::query()->where('admin_username','=', $data['admin_username'])->first();
         if ($admin) {
             echo 1;
         } else {
@@ -24,7 +24,7 @@ class MailController extends Controller
     {
         $data = $request->all();
         $title_mail = "Reset password";
-        $admin = Admin::where('admin_username', $data['admin_username'])->first();
+        $admin = Admin::query()->where('admin_username','=', $data['admin_username'])->first();
         if ($admin) {
             $token_random = Str::random();
             $admin->admin_token = $token_random;
@@ -41,7 +41,7 @@ class MailController extends Controller
     public function forgot_pass(Request $request)
     {
         $data = $request->all();
-        $customer = Customer::where('customer_username', $data['username'])->first();
+        $customer = Customer::query()->where('customer_username','=', $data['username'])->first();
         if ($customer) {
             $token_random = Str::random();
             $title_mail = "Reset password";

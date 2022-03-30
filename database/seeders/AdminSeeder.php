@@ -16,7 +16,6 @@ class AdminSeeder extends Seeder
         // Insert some stuff
         DB::table('tbl_admin')->insert(
             array(
-                'admin_id' => 1,
                 'admin_username' => 'admin',
                 'admin_email' => 'admin@gmail.com',
                 'admin_name' => 'Admin',

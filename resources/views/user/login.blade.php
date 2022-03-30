@@ -148,7 +148,7 @@
         $("#ForgotForm").hide();
     }
     $(document).on('click', '#login', function(e) {
-        event.preventDefault()
+        e.preventDefault()
         var username = $('#username').val();
         var password = $('#password').val();
         if(username != "" && password != ""){

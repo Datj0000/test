@@ -14,9 +14,9 @@ class CreatTblAttendanceTable extends Migration
     public function up()
     {
         Schema::create('tbl_attendance', function (Blueprint $table) {
-            $table->increments('attendance_id');
+            $table->id();
             $table->integer('buypackage_id');
-            $table->date('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

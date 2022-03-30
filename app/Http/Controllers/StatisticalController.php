@@ -15,14 +15,14 @@ class StatisticalController extends Controller
     public function filter_by_date(Request $request)
     {
         $data = $request->all();
-        $from_date = Carbon::parse($data['from_date'])->format('Y-m-d');
-        $to_date = Carbon::parse($data['to_date'])->format('Y-m-d');
-        $get = Statistical::whereBetween('statistical_time', [$from_date, $to_date])->orderBy('statistical_time', 'ASC')->get();
+        $from_date = Carbon::createFromDate($data['from_date']);
+        $to_date = Carbon::createFromDate($data['to_date']);
+        $get = Statistical::query()->whereBetween('created_at', [$from_date, $to_date])->orderBy('created_at', 'ASC')->get();
         $check = $get->count();
         if ($check > 0) {
             foreach ($get as $key => $val) {
                 $chart_data[] = array(
-                    'statistical_time' => $val->statistical_time,
+                    'statistical_time' => $val->created_at,
                     'statistical_quantity' => $val->statistical_quantity
                 );
             }
@@ -32,6 +32,6 @@ class StatisticalController extends Controller
                 'statistical_quantity' => 0
             );
         }
-        echo $data = json_encode($chart_data);
+        echo json_encode($chart_data);
     }
 }

@@ -15,9 +15,11 @@ class CreatTblWithoutTable extends Migration
     public function up()
     {
         Schema::create('tbl_without', function (Blueprint $table) {
-            $table->increments('without_id');
+            $table->id();
+            $table->string('without_account');
             $table->integer('customer_id');
-            $table->date('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));;
+            $table->string('without_amount');
+            $table->timestamps();
         });
     }
 

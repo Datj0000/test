@@ -6,42 +6,6 @@
             </h3>
         </div>
     </div>
-    {{-- <div class="modal fade" id="exampleModalPopovers" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{__('lang.decentralization')}}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <i aria-hidden="true" class="ki ki-close"></i>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form class="form">
-                        <div class="card-body">
-                            <input type="hidden" id="edit_customer_id">
-                            <div class="form-group">
-                                <label>{{__('lang.fullname')}}:</label>
-                                <input readonly type="text" class="form-control form-control-solid"
-                                    id="edit_customer_name" />
-                            </div>
-                            <div class="form-group">
-                                <label>{{__('lang.decentralization')}}:</label>
-                                <select id="edit_customer_role" class="form-control">
-                                    <option value="1">{{__('lang.boss')}}</option>
-                                    <option value="0">{{__('lang.staff')}}</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="card-footer">
-                            <button id="update_staff" type="button" class="btn btn-primary mr-2">Submit</button>
-                            <button type="reset" class="btn btn-secondary">Cancel</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div> --}}
     <div class="card-body">
         <table class="table table-separate table-head-custom table-checkable display nowrap" cellspacing="0"
             width="100%" id="kt_datatable">
@@ -93,11 +57,11 @@
                     render: function(data, type, row) {
                         if (row.customer_role == 1) {
                             return `\
-                            <span data-role="0" data-id_customer='${row.customer_id}' style="cursor: pointer" class="update_role label label-lg label-light-success label-inline">Vip Member</span>\
+                            <span data-role="0" data-id_customer='${row.id}' style="cursor: pointer" class="update_role label label-lg label-light-success label-inline">Vip Member</span>\
                             `;
                         } else if (row.customer_role == 0) {
                             return `\
-                            <span data-role="1" data-id_customer='${row.customer_id}' style="cursor: pointer" class="update_role label label-lg label-light-primary label-inline"">Member</span>\
+                            <span data-role="1" data-id_customer='${row.id}' style="cursor: pointer" class="update_role label label-lg label-light-primary label-inline"">Member</span>\
                             `;
                         }
                     }
@@ -110,7 +74,7 @@
                     autoHide: false,
                     render: function(data, type, row) {
                         return `\
-                            <span data-id_customer='${row.customer_id}' class="delete btn btn-sm btn-clean btn-icon" title="Delete">\
+                            <span data-id_customer='${row.id}' class="delete btn btn-sm btn-clean btn-icon" title="Delete">\
 								<i class="la la-trash"></i>\
 							</span>\
                             `
@@ -131,7 +95,7 @@
         });
         $(document).on('click', '.update_role', function(e) {
             e.preventDefault();
-            var customer_id = $(this).data('id_customer');
+            var id = $(this).data('id_customer');
             var role = $(this).data('role');
             Swal.fire({
                     title: "{{__('lang.question')}}",
@@ -143,7 +107,7 @@
                 })
                 .then(function(result) {
                     if (result.value) {
-                        axios.get('update-role/' + customer_id + role)
+                        axios.get('update-role/' + id + role)
                         .then(function (response) {
                             Swal.fire({
                                 icon: "success",
@@ -164,7 +128,7 @@
         });
         $(document).on('click', '.delete', function(e) {
             e.preventDefault();
-            var customer_id = $(this).data('id_customer');
+            var id = $(this).data('id_customer');
             Swal.fire({
                     title: "{{__('lang.question')}}",
                     text: "{{__('lang.are_you_sure')}}?",
@@ -175,7 +139,7 @@
                 })
                 .then(function(result) {
                     if (result.value) {
-                        axios.get('delete-customer/' + customer_id)
+                        axios.get('delete-customer/' + id)
                         .then(function (response) {
                             Swal.fire({
                                 icon: "success",

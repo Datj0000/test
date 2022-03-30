@@ -2,6 +2,7 @@
 
 return[
     'without' => 'Without',
+    'recharge' => 'Recharge',
     'wallet' => 'Wallet',
     'wallet_balance' => 'Wallet balance',
     'wallet_address' => 'Wallet address Metamask',

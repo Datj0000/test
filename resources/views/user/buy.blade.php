@@ -49,7 +49,6 @@
                                 $customer_id = Session::get('customer_id');
                                 $customer_name = Session::get('customer_name');
                                 $customer_image = Session::get('customer_image');
-                                $customer_type = Session::get('customer_type');
                                 if(isset($customer_id)){
                             ?>
                             <div class="de-login-menu">
@@ -61,11 +60,7 @@
                                 <span id="de-click-menu-profile" class="de-menu-profile">
                                     <?php
                                         $customer_image = Session::get('customer_image');
-                                        if(isset($customer_image) && isset($customer_type)){
-                                    ?>
-                                        <img src="{{ $customer_image}}" class="img-fluid" alt="">
-                                    <?php
-                                        }else if(isset($customer_image)){
+                                        if(isset($customer_image)){
                                         ?>
                                         <img src="{{ asset('uploads/avatar/' . $customer_image . '')}}" class="img-fluid" alt="">
                                     <?php
@@ -107,14 +102,7 @@
                                     <ul class="de-submenu-profile">
                                         <li><a href="{{ URL::to('/history') }}"><i class="fa fa-history"></i> Transaction history</a>
                                         <li><a href="{{ URL::to('/profile') }}"><i class="fa fa-user"></i> Edit profile</a>
-                                        <?php
-                                            $check_pass = Session::get('customer_pass');
-                                            if($check_pass){
-                                        ?>
-                                            <li><a href="{{ URL::to('/changepass') }}"><i class="fa fa-pencil"></i> Change your password</a>
-                                        <?php
-                                        }
-                                        ?>
+                                        <li><a href="{{ URL::to('/changepass') }}"><i class="fa fa-pencil"></i> Change your password</a>
                                         <li><a href="#" id="logout"><i class="fa fa-sign-out"></i> Sign out</a>
                                     </ul>
                                 </div>
@@ -261,7 +249,7 @@
         editable: true,
     });
     $(document).on('click', '#attendance', function(e) {
-        event.preventDefault()
+        e.preventDefault()
         axios.get("attendance/"+ {{$buypackage_id}})
         .then(function (response) {
             switch(response.data) {

@@ -15,11 +15,11 @@ class CreatTblBuypackageTable extends Migration
     public function up()
     {
         Schema::create('tbl_buypackage', function (Blueprint $table) {
-            $table->increments('buypackage_id');
+            $table->id();
             $table->integer('customer_id');
             $table->integer('package');
             $table->integer('status')->default(0);
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

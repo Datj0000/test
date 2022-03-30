@@ -10,8 +10,8 @@ use Carbon\Carbon;
 class NotificationController extends Controller
 {
     public function view(){
-        $customer_id = Session::get('customer_id');
-        $noti = Notification::where('customer_id', $customer_id)->limit(5)->get();
+        $id = Session::get('customer_id');
+        $noti = Notification::query()->where('customer_id','=', $id)->limit(5)->get();
         $today = Carbon::now('Asia/Ho_Chi_Minh');
         $output ='';
         if ($noti->count() > 0) {

@@ -102,10 +102,10 @@
                     autoHide: false,
                     render: function(data, type, row) {
                         return `\
-                            <span data-toggle="modal" data-target="#exampleModalPopovers" data-id_recharge='${row.recharge_id}' class="view btn btn-sm btn-clean btn-icon" title="View detail">\
+                            <span data-toggle="modal" data-target="#exampleModalPopovers" data-id_recharge='${row.id}' class="view btn btn-sm btn-clean btn-icon" title="View detail">\
 								<i class="la la-eye"></i>\
 							</span>\
-                            <span data-id_recharge='${row.recharge_id}' class="delete btn btn-sm btn-clean btn-icon" title="Delete">\
+                            <span data-id_recharge='${row.id}' class="delete btn btn-sm btn-clean btn-icon" title="Delete">\
 								<i class="la la-trash"></i>\
 							</span>\
                             `
@@ -126,8 +126,8 @@
         });
         $(document).on('click', '.view', function(e) {
             e.preventDefault();
-            var recharge_id = $(this).data('id_recharge');
-            axios.get('view-recharge/' + recharge_id)
+            var id = $(this).data('id_recharge');
+            axios.get('view-recharge/' + id)
             .then(function (response) {
                 $('#customer_name').val(response.data.customer_name);
                 $('#customer_email').val(response.data.customer_email);
@@ -144,7 +144,7 @@
 
         $(document).on('click', '.delete', function(e) {
             e.preventDefault();
-            var recharge_id = $(this).data('id_recharge');
+            var id = $(this).data('id_recharge');
             Swal.fire({
                     title: "{{__('lang.question')}}",
                     text: "{{__('lang.are_you_sure')}}?",
@@ -155,7 +155,7 @@
                 })
                 .then(function(result) {
                     if (result.value) {
-                        axios.get('delete-recharge/' + recharge_id)
+                        axios.get('delete-recharge/' + id)
                         .then(function (response) {
                             Swal.fire({
                                 icon: "success",

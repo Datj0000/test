@@ -13,12 +13,12 @@ class SettingController extends Controller
     }
     public function fetchdata()
     {
-        $all = Setting::where('setting_id', 1)->first();
+        $all = Setting::query()->where('id','=', 1)->first();
         return response()->json($all);
     }
     public function update(Request $request)
     {
-        $setting = Setting::where('setting_id', 1)->first();
+        $setting = Setting::query()->where('id','=', 1)->first();
         $setting->wallet_address = $request->wallet_address;
         $setting->save();
     }

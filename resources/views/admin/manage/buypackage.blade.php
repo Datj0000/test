@@ -68,7 +68,7 @@
                     autoHide: false,
                     render: function(data, type, row) {
                         return `\
-                            <span data-id_buypackage='${row.buypackage_id}' class="delete btn btn-sm btn-clean btn-icon" title="Delete">\
+                            <span data-id_buypackage='${row.id}' class="delete btn btn-sm btn-clean btn-icon" title="Delete">\
 								<i class="la la-trash"></i>\
 							</span>\
                             `
@@ -90,7 +90,7 @@
 
         $(document).on('click', '.delete', function(e) {
             e.preventDefault();
-            var buypackage_id = $(this).data('id_buypackage');
+            var id = $(this).data('id_buypackage');
             Swal.fire({
                     title: "{{__('lang.question')}}",
                     text: "{{__('lang.are_you_sure')}}?",
@@ -101,7 +101,7 @@
                 })
                 .then(function(result) {
                     if (result.value) {
-                        axios.get('delete-buypackage/' + buypackage_id)
+                        axios.get('delete-buypackage/' + id)
                         .then(function (response) {
                             Swal.fire({
                                 icon: "success",

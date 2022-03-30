@@ -15,9 +15,9 @@ class CreatTblWalletTable extends Migration
     public function up()
     {
         Schema::create('tbl_wallet', function (Blueprint $table) {
-            $table->increments('wallet_id');
+            $table->id();
             $table->float('wallet_balance');
-            $table->date('statistical_time')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

@@ -7,11 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class BuyPackage extends Model
 {
-    public $timestamps = false; //set time to false
+    use HasFactory;
     protected $fillable = [
     	'created_at'
     ];
-    protected $primaryKey = 'buypackage_id';
  	protected $table = 'tbl_buypackage';
-    use HasFactory;
 }

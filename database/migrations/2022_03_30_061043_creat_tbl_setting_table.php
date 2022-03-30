@@ -14,7 +14,7 @@ class CreatTblSettingTable extends Migration
     public function up()
     {
         Schema::create('tbl_setting', function (Blueprint $table) {
-            $table->increments('setting_id');
+            $table->id();
             $table->string('wallet_address');
             $table->float('wallet_balance');
         });

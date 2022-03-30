@@ -15,11 +15,11 @@ class CreatTblNotificationTable extends Migration
     public function up()
     {
         Schema::create('tbl_notification', function (Blueprint $table) {
-            $table->increments('notification_id');
+            $table->id();
             $table->integer('notification_status');
             $table->float('notification_amount');
             $table->integer('customer_id');
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

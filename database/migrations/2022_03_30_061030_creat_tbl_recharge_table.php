@@ -15,13 +15,13 @@ class CreatTblRechargeTable extends Migration
     public function up()
     {
         Schema::create('tbl_recharge', function (Blueprint $table) {
-            $table->increments('recharge_id');
+            $table->id();
             $table->string('txHash');
             $table->string('tran_from');
             $table->string('tran_to');
             $table->integer('customer_id');
             $table->float('amount');
-            $table->dateTime('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps();
         });
     }
 

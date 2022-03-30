@@ -27,18 +27,18 @@
     <!-- color scheme -->
     <link id="colors" href="{{ asset('frontend/css/colors/scheme-01.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('frontend/css/coloring.css')}}" rel="stylesheet" type="text/css" />
-{{--    <script type='text/javascript'>--}}
-{{--        checkCtrl=false $(&#39;*&#39;).keydown(function(e){--}}
-{{--            if(e.keyCode==&#39;17&#39;){ checkCtrl=false  } }).keyup(function(ev){--}}
-{{--            if(ev.keyCode==&#39;17&#39;){ checkCtrl=false } }).keydown(function(event){--}}
-{{--            if(checkCtrl){--}}
-{{--                if(event.keyCode==&#39;85&#39;){ return false; } } })--}}
-{{--    </script>--}}
-{{--    <script type='text/javascript'>--}}
+{{--    <SCRIPT TYPE='TEXT/JAVASCRIPT'>--}}
+{{--        CHECKCTRL=FALSE $(&#39;*&#39;).KEYDOWN(FUNCTION(E){--}}
+{{--            IF(E.KEYCODE==&#39;17&#39;){ CHECKCTRL=FALSE  } }).KEYUP(FUNCTION(EV){--}}
+{{--            IF(EV.KEYCODE==&#39;17&#39;){ CHECKCTRL=FALSE } }).KEYDOWN(FUNCTION(EVENT){--}}
+{{--            IF(CHECKCTRL){--}}
+{{--                IF(EVENT.KEYCODE==&#39;85&#39;){ RETURN FALSE; } } })--}}
+{{--    </SCRIPT>--}}
+{{--    <SCRIPT TYPE='TEXT/JAVASCRIPT'>--}}
 {{--        //<![CDATA[--}}
-{{--        shortcut={all_shortcuts:{},add:function(a,b,c){var d={type:"keydown",propagate:!1,disable_in_input:!1,target:document,keycode:!1};if(c)for(var e in d)"undefined"==typeof c[e]&&(c[e]=d[e]);else c=d;d=c.target,"string"==typeof c.target&&(d=document.getElementById(c.target)),a=a.toLowerCase(),e=function(d){d=d||window.event;if(c.disable_in_input){var e;d.target?e=d.target:d.srcElement&&(e=d.srcElement),3==e.nodeType&&(e=e.parentNode);if("INPUT"==e.tagName||"TEXTAREA"==e.tagName)return}d.keyCode?code=d.keyCode:d.which&&(code=d.which),e=String.fromCharCode(code).toLowerCase(),188==code&&(e=","),190==code&&(e=".");var f=a.split("+"),g=0,h={"`":"~",1:"!",2:"@",3:"#",4:"$",5:"%",6:"^",7:"&",8:"*",9:"(",0:")","-":"_","=":"+",";":":","'":'"',",":"<",".":">","/":"?","\\":"|"},i={esc:27,escape:27,tab:9,space:32,"return":13,enter:13,backspace:8,scrolllock:145,scroll_lock:145,scroll:145,capslock:20,caps_lock:20,caps:20,numlock:144,num_lock:144,num:144,pause:19,"break":19,insert:45,home:36,"delete":46,end:35,pageup:33,page_up:33,pu:33,pagedown:34,page_down:34,pd:34,left:37,up:38,right:39,down:40,f1:112,f2:113,f3:114,f4:115,f5:116,f6:117,f7:118,f8:119,f9:120,f10:121,f11:122,f12:123},j=!1,l=!1,m=!1,n=!1,o=!1,p=!1,q=!1,r=!1;d.ctrlKey&&(n=!0),d.shiftKey&&(l=!0),d.altKey&&(p=!0),d.metaKey&&(r=!0);for(var s=0;k=f[s],s<f.length;s++)"ctrl"==k||"control"==k?(g++,m=!0):"shift"==k?(g++,j=!0):"alt"==k?(g++,o=!0):"meta"==k?(g++,q=!0):1<k.length?i[k]==code&&g++:c.keycode?c.keycode==code&&g++:e==k?g++:h[e]&&d.shiftKey&&(e=h[e],e==k&&g++);if(g==f.length&&n==m&&l==j&&p==o&&r==q&&(b(d),!c.propagate))return d.cancelBubble=!0,d.returnValue=!1,d.stopPropagation&&(d.stopPropagation(),d.preventDefault()),!1},this.all_shortcuts[a]={callback:e,target:d,event:c.type},d.addEventListener?d.addEventListener(c.type,e,!1):d.attachEvent?d.attachEvent("on"+c.type,e):d["on"+c.type]=e},remove:function(a){var a=a.toLowerCase(),b=this.all_shortcuts[a];delete this.all_shortcuts[a];if(b){var a=b.event,c=b.target,b=b.callback;c.detachEvent?c.detachEvent("on"+a,b):c.removeEventListener?c.removeEventListener(a,b,!1):c["on"+a]=!1}}},shortcut.add("Ctrl+U",function(){top.location.href=""}),shortcut.add("F12",function(){top.location.href=""}),shortcut.add("Ctrl+Shift+I",function(){top.location.href=""}),shortcut.add("Ctrl+S",function(){top.location.href=""}),shortcut.add("Ctrl+Shift+C",function(){top.location.href=""});--}}
+{{--        SHORTCUT={ALL_SHORTCUTS:{},ADD:FUNCTION(A,B,C){VAR D={TYPE:"KEYDOWN",PROPAGATE:!1,DISABLE_IN_INPUT:!1,TARGET:DOCUMENT,KEYCODE:!1};IF(C)FOR(VAR E IN D)"UNDEFINED"==TYPEOF C[E]&&(C[E]=D[E]);ELSE C=D;D=C.TARGET,"STRING"==TYPEOF C.TARGET&&(D=DOCUMENT.GETELEMENTBYID(C.TARGET)),A=A.TOLOWERCASE(),E=FUNCTION(D){D=D||WINDOW.EVENT;IF(C.DISABLE_IN_INPUT){VAR E;D.TARGET?E=D.TARGET:D.SRCELEMENT&&(E=D.SRCELEMENT),3==E.NODETYPE&&(E=E.PARENTNODE);IF("INPUT"==E.TAGNAME||"TEXTAREA"==E.TAGNAME)RETURN}D.KEYCODE?CODE=D.KEYCODE:D.WHICH&&(CODE=D.WHICH),E=STRING.FROMCHARCODE(CODE).TOLOWERCASE(),188==CODE&&(E=","),190==CODE&&(E=".");VAR F=A.SPLIT("+"),G=0,H={"`":"~",1:"!",2:"@",3:"#",4:"$",5:"%",6:"^",7:"&",8:"*",9:"(",0:")","-":"_","=":"+",";":":","'":'"',",":"<",".":">","/":"?","\\":"|"},I={ESC:27,ESCAPE:27,TAB:9,SPACE:32,"RETURN":13,ENTER:13,BACKSPACE:8,SCROLLLOCK:145,SCROLL_LOCK:145,SCROLL:145,CAPSLOCK:20,CAPS_LOCK:20,CAPS:20,NUMLOCK:144,NUM_LOCK:144,NUM:144,PAUSE:19,"BREAK":19,INSERT:45,HOME:36,"DELETE":46,END:35,PAGEUP:33,PAGE_UP:33,PU:33,PAGEDOWN:34,PAGE_DOWN:34,PD:34,LEFT:37,UP:38,RIGHT:39,DOWN:40,F1:112,F2:113,F3:114,F4:115,F5:116,F6:117,F7:118,F8:119,F9:120,F10:121,F11:122,F12:123},J=!1,L=!1,M=!1,N=!1,O=!1,P=!1,Q=!1,R=!1;D.CTRLKEY&&(N=!0),D.SHIFTKEY&&(L=!0),D.ALTKEY&&(P=!0),D.METAKEY&&(R=!0);FOR(VAR S=0;K=F[S],S<F.LENGTH;S++)"CTRL"==K||"CONTROL"==K?(G++,M=!0):"SHIFT"==K?(G++,J=!0):"ALT"==K?(G++,O=!0):"META"==K?(G++,Q=!0):1<K.LENGTH?I[K]==CODE&&G++:C.KEYCODE?C.KEYCODE==CODE&&G++:E==K?G++:H[E]&&D.SHIFTKEY&&(E=H[E],E==K&&G++);IF(G==F.LENGTH&&N==M&&L==J&&P==O&&R==Q&&(B(D),!C.PROPAGATE))RETURN D.CANCELBUBBLE=!0,D.RETURNVALUE=!1,D.STOPPROPAGATION&&(D.STOPPROPAGATION(),D.PREVENTDEFAULT()),!1},THIS.ALL_SHORTCUTS[A]={CALLBACK:E,TARGET:D,EVENT:C.TYPE},D.ADDEVENTLISTENER?D.ADDEVENTLISTENER(C.TYPE,E,!1):D.ATTACHEVENT?D.ATTACHEVENT("ON"+C.TYPE,E):D["ON"+C.TYPE]=E},REMOVE:FUNCTION(A){VAR A=A.TOLOWERCASE(),B=THIS.ALL_SHORTCUTS[A];DELETE THIS.ALL_SHORTCUTS[A];IF(B){VAR A=B.EVENT,C=B.TARGET,B=B.CALLBACK;C.DETACHEVENT?C.DETACHEVENT("ON"+A,B):C.REMOVEEVENTLISTENER?C.REMOVEEVENTLISTENER(A,B,!1):C["ON"+A]=!1}}},SHORTCUT.ADD("CTRL+U",FUNCTION(){TOP.LOCATION.HREF=""}),SHORTCUT.ADD("F12",FUNCTION(){TOP.LOCATION.HREF=""}),SHORTCUT.ADD("CTRL+SHIFT+I",FUNCTION(){TOP.LOCATION.HREF=""}),SHORTCUT.ADD("CTRL+S",FUNCTION(){TOP.LOCATION.HREF=""}),SHORTCUT.ADD("CTRL+SHIFT+C",FUNCTION(){TOP.LOCATION.HREF=""});--}}
 {{--        //]]>--}}
-{{--    </script>--}}
+{{--    </SCRIPT>--}}
 </head>
 <input type="hidden" id="wallet_address">
 <body>
@@ -139,7 +139,7 @@
             <div class="modal-body">
             <div class="p-3 form-border">
                 <h3>Without</h3>
-                You are about to purchase a <b>Red Ocean</b> from <b>Monica Lucas</b>
+                It will cost you an extra 1% to make the without
                 <div class="spacer-single"></div>
                 <h6>Enter quantity amount</h6>
                 <input type="number" name="amount" id="amount_without" class="form-control" value="1" />
@@ -158,7 +158,7 @@
         <div class="modal-body">
             <div class="p-3 form-border">
                 <h3>Deposit</h3>
-                You are about to purchase a <b>Red Ocean</b> from <b>Monica Lucas</b>
+                You are about to purchase a <b>FPI</b> from <b>0x8A751ab17A5E81acf3CcBE2a695f84bF55A3523A</b>
                 <div class="spacer-single"></div>
                 <h6>Enter quantity amount</h6>
                 <input type="number" name="amount" id="inp_amount" class="form-control" value="1" />
@@ -252,32 +252,35 @@
                     try {
                         ethereum.request({ method: 'eth_requestAccounts' });
                         var amount = $('#amount_without').val();
+                        var fee = amount/100 * 1;
                         axios.post("create-without", {
                             amount: amount,
+                            fee: fee,
                             address_to: ethereum.selectedAddress
                         })
                         .then(function (response) {
-                            console.log(response.data)
-                            if(response.data == 'success'){
-                                Swal.fire({
-                                    icon: 'success',
-                                    title: 'Success',
-                                    text: 'Without success',
-                                })
-                            }
-                            else if(response.data == 'fail'){
-                                Swal.fire({
-                                    icon: 'warning',
-                                    title: 'Fail',
-                                    text: 'Without success',
-                                })
-                            }
-                            else if(response.data == 1){
-                                Swal.fire({
-                                    icon: 'warning',
-                                    title: 'Fail',
-                                    text: 'Your account does not have enough FPI',
-                                })
+                            switch(response.data) {
+                                case 'success':
+                                    Swal.fire({
+                                        icon: 'success',
+                                        title: 'Success',
+                                        text: 'Without success',
+                                    })
+                                    break;
+                                case 'fail':
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Fail',
+                                        text: 'Without success',
+                                    })
+                                    break;
+                                case 1:
+                                    Swal.fire({
+                                        icon: 'warning',
+                                        title: 'Fail',
+                                        text: 'Your account does not have enough FPI',
+                                    })
+                                    break;
                             }
                         })
                         .catch((error) => {

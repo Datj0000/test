@@ -9,7 +9,8 @@ class Attendance extends Model
 {
     use HasFactory;
     protected $fillable = [
-    	'created_at'
+        'buypackage_id',
+    	'created_at',
     ];
  	protected $table = 'tbl_attendance';
 }

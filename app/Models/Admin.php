@@ -10,12 +10,11 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Admin extends Authenticatable
 {
     use HasFactory;
+    protected $table = 'tbl_admin';
+    protected $primaryKey = 'id';
     protected $fillable = [
     	'admin_email', 'admin_password', 'admin_name','admin_username', 'admin_token'
     ];
-    protected $primaryKey = 'id';
- 	protected $table = 'tbl_admin';
-
  	public function getAuthPassword(){
  		return $this->admin_password;
  	}

@@ -17,13 +17,13 @@ class BuyPackageController extends Controller
         $buypackage = new BuyPackage();
         $buypackage->customer_id = $customer_id;
         $buypackage->package = $package;
-        $buypackage->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+        $buypackage->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
         $check = BuyPackage::query()->where('customer_id','=',$customer_id)->where('status','=',0)->orderBy('id', 'DESC')->first();
-        $customer = Customer::query()->where('id',$customer_id)->first();
+        $customer = Customer::query()->where('id','=',$customer_id)->first();
         if($check){
-            $nextweek = Carbon::parse($check->created_at)->addWeek();
-            $check_date = BuyPackage::query()->where('customer_id','=',$customer_id)->where('status','=',0)->where('created_at','>',$nextweek)->first();
-            if($check_date){
+            $nextweek = Carbon::parse($check->created_at)->addWeek()->format('Y-m-d');
+            echo $nextweek;
+            if($nextweek > $check->created_at){
                 if($customer->customer_balance >= $package){
                     $customer->customer_balance -= $package;
                     $customer->save();
@@ -42,10 +42,10 @@ class BuyPackageController extends Controller
         else{
             if($customer->customer_balance >= $package){
                 $buypackage->save();
-                $customer->customer_balance -= $package;
+                $customer->customer_balance = $customer->customer_balance - $package;
                 $customer->save();
-                Session::put('customer_balance', $customer->customer_balance);
                 echo 0;
+                Session::put('customer_balance', $customer->customer_balance);
             }
             else{
                 echo 2;

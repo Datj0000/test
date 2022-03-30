@@ -14,11 +14,33 @@ class AttendanceController extends Controller
     {
         $attendance = new Attendance();
         $attendance->buypackage_id = $buypackage_id;
-        $attendance->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
-        $check = Attendance::query()->where('buypackage_id',$buypackage_id)->where('created_at',$today)->first();
-        if(!$check){
-            $check_statistical = Statistical::query()->where('statistical_time',$today)->first();
+        $check = Attendance::query()->where('buypackage_id','=',$buypackage_id)->orderBy('id', 'DESC')->first();
+        if($check){
+            if(Carbon::parse($check->created_at)->format('Y-m-d') < $today){
+                $check_statistical = Statistical::query()->where('created_at','>=',$today)->first();
+                if($check_statistical){
+                    $check_statistical->statistical_quantity += 1;
+                    $check_statistical->save();
+                }
+                else{
+                    $statistical = new Statistical();
+                    $statistical->statistical_quantity = 1;
+                    $statistical->save();
+                }
+                $attendance->save();
+                $check_attendane = Attendance::query()->where('buypackage_id',$buypackage_id)->get();
+                if($check_attendane->count() == 7){
+                    echo 0;
+                } else{
+                    echo 1;
+                }
+            } else{
+                echo 2;
+            }
+        } else{
+            $attendance->save();
+            $check_statistical = Statistical::query()->where('created_at','>=',$today)->first();
             if($check_statistical){
                 $check_statistical->statistical_quantity += 1;
                 $check_statistical->save();
@@ -26,27 +48,18 @@ class AttendanceController extends Controller
             else{
                 $statistical = new Statistical();
                 $statistical->statistical_quantity = 1;
-                $statistical->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                 $statistical->save();
             }
-            $attendance->save();
-            $check_attendane = Attendance::where('buypackage_id',$buypackage_id)->get();
-            if($check_attendane->count() == 7){
-                echo 0;
-            } else{
-                echo 1;
-            }
-        }else{
-            echo 2;
+            echo 1;
         }
     }
     public function load($buypackage_id)
     {
-        $attendance = Attendance::query()->where('buypackage_id',$buypackage_id)->get();
+        $attendance = Attendance::query()->where('buypackage_id','=',$buypackage_id)->get();
         $data = array();
         foreach($attendance as $key => $item){
             $data[] = array(
-                'title'   => "Attendance",
+                'title'   => 'Attendance',
                 'start'   => $item->created_at,
             );
         }

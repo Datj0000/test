@@ -36,13 +36,6 @@ class CustomerController extends Controller
     public function register(Request $request)
     {
         $data = $request->all();
-        $register = new Customer();
-        $register->customer_name = $data['name'];
-        $register->customer_email = $data['email'];
-        $register->customer_phone = $data['phone'];
-        $register->customer_username = $data['username'];
-        $register->customer_pass = md5($data['pass']);
-        $register->customer_image = '';
         $check_username = Customer::query()->where('customer_username', '=', $data['username'])->first();
         $check_email = Customer::query()->where('customer_email', '=', $data['email'])->first();
         $check_phone = Customer::query()->where('customer_phone', '=', $data['phone'])->first();
@@ -56,6 +49,12 @@ class CustomerController extends Controller
             echo 2;
         }
         else {
+            $register = new Customer();
+            $register->customer_name = $data['name'];
+            $register->customer_email = $data['email'];
+            $register->customer_phone = $data['phone'];
+            $register->customer_username = $data['username'];
+            $register->customer_pass = md5($data['pass']);
             $register->save();
             echo 3;
         }

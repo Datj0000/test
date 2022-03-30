@@ -8,8 +8,17 @@ use Illuminate\Database\Eloquent\Model;
 class Customer extends Model
 {
     use HasFactory;
-    protected $table = 'tbl_customer';
+//    public $timestamps = false; //set time to false
     protected $fillable = [
-    	'customer_name', 'customer_email', 'customer_pass','customer_phone','customer_username','customer_image', 'customer_balance'
+    	'customer_name',
+        'customer_email',
+        'customer_phone',
+        'customer_username',
+        'customer_pass',
+        'customer_image',
+        'customer_token',
+        'customer_balance',
+        'customer_role'
     ];
+    protected $table = 'tbl_customer';
 }

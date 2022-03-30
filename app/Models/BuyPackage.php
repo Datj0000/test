@@ -9,7 +9,10 @@ class BuyPackage extends Model
 {
     use HasFactory;
     protected $fillable = [
-    	'created_at'
+        'customer_id',
+        'package',
+        'status',
+    	'created_at',
     ];
  	protected $table = 'tbl_buypackage';
 }

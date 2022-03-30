@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AdminSeeder extends Seeder
 {
@@ -14,15 +15,14 @@ class AdminSeeder extends Seeder
     public function run()
     {
         // Insert some stuff
-        DB::table('tbl_admin')->insert(
-            array(
-                'admin_username' => 'admin',
-                'admin_email' => 'admin@gmail.com',
-                'admin_name' => 'Admin',
-                'admin_password' => 'e10adc3949ba59abbe56e057f20f883e',
-                'admin_image' => '',
-                'admin_token' => 'NKe8szAtU57vzbwu',
-            )
-        );
+        DB::table('tbl_admin')->insert([
+            'admin_username' => 'admin',
+            'admin_email' => 'admin@gmail.com',
+            'admin_name' => 'Admin',
+            'admin_password' => md5('123456'),
+            'admin_image' => '',
+            'admin_token' => '',
+        ]);
+
     }
 }

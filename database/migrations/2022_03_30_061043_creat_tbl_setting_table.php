@@ -17,6 +17,7 @@ class CreatTblSettingTable extends Migration
             $table->id();
             $table->string('wallet_address');
             $table->float('wallet_balance');
+            $table->timestamps();
         });
     }
 

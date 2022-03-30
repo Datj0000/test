@@ -134,19 +134,19 @@
                 <div class="row align-items-center">
                     <div class="col-md-6">
                         <div class="spacer-single"></div>
-                        <h6 class="wow fadeInUp" data-wow-delay=".5s"><span class="text-uppercase id-color-2">Happy FPI Day!</span></h6>
+                        <h6 class="wow fadeInUp" data-wow-delay=".25s"><span class="text-uppercase id-color-2">Happy FPI Day!</span></h6>
                         <div class="spacer-10"></div>
-                        <h1 class="wow fadeInUp" data-wow-delay=".75s">Fan Pi Network Token</h1>
-                        <p class="wow fadeInUp lead" data-wow-delay="1s">
+                        <h1 class="wow fadeInUp" data-wow-delay=".35s">Fan Pi Network Token</h1>
+                        <p class="wow fadeInUp lead" data-wow-delay=".5s">
                             The coin was created and built by the Pi Network community. <br> Used as peer-to-peer payments.<br> Contract Address: 0x8A751ab17A5E81acf3CcBE2a695f84bF55A3523A
                         </p>
                         <div class="spacer-10"></div>
                         <a href="#" class="btn-main wow fadeInUp lead" data-wow-delay="1.25s">Explore</a>
 
-                        <a href="https://drive.google.com/file/d/1FFBpfCfUvNIh7ONvXGLCWOO8IpLqaHTX/view" class="btn-main wow fadeInUp lead" data-wow-delay="1.25s" style="background-color:#ffd700;" target="blank">White Paper</a>
+                        <a href="https://drive.google.com/file/d/1FFBpfCfUvNIh7ONvXGLCWOO8IpLqaHTX/view" class="btn-main wow fadeInUp lead" data-wow-delay=".75s" style="background-color:#ffd700;" target="blank">White Paper</a>
                         <div class="mb-sm-30"></div>
 
-                        <div class="col wow fadeInUp" style="margin-top:20px;" data-wow-delay="1s">
+                        <div class="col wow fadeInUp" style="margin-top:20px;" data-wow-delay=".5s">
                             <a class="app-apple" href="#" title="Download">
                                 <img src="https://imgmainsite.be.com.vn/2020/11/b4d3eb95-app_apple@2x.png" alt="" style="width: 138px;">
                             </a>
@@ -157,7 +157,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <img src="{{ asset('frontend/images/bgtop.png')}}" class="lazy img-fluid wow fadeIn" data-wow-delay="1.25s" alt="" style="width: 320px;margin: 66px 30px 30px 30px;">
+                        <img src="{{ asset('frontend/images/bgtop.png')}}" class="lazy img-fluid wow fadeIn" data-wow-delay=".75s" alt="" style="width: 320px;margin: 66px 30px 30px 30px;">
                     </div>
                 </div>
             </div>
@@ -177,7 +177,7 @@
                         <i class="wow fadeInUp bg-color-2 i-boxed icon_genius"></i>
                         <div class="text">
                             <h4 class="wow fadeInUp">Decentralized</h4>
-                            <p class="wow fadeInUp" data-wow-delay=".25s">
+                            <p class="wow fadeInUp" data-wow-delay=".15s">
                                 Decentralized Secure, Immutable, non-counterfeitable and interoperable digital money.</p>
                         </div>
                         <i class="wm icon_genius"></i>
@@ -188,7 +188,7 @@
                         <i class="wow fadeInUp bg-color-2 i-boxed icon_ribbon"></i>
                         <div class="text">
                             <h4 class="wow fadeInUp">Ownership of rights</h4>
-                            <p class="wow fadeInUp" data-wow-delay=".25s">Relinquishment of token ownership by the founder<br><br><br></p>
+                            <p class="wow fadeInUp" data-wow-delay=".15s">Relinquishment of token ownership by the founder<br><br><br></p>
                         </div>
                         <i class="wm icon_ribbon"></i>
                     </div>
@@ -198,7 +198,7 @@
                         <i class="wow fadeInUp bg-color-2 i-boxed icon_chat"></i>
                         <div class="text">
                             <h4 class="wow fadeInUp">Community</h4>
-                            <p class="wow fadeInUp" data-wow-delay=".25s">Over 10 million members worldwide<br><br><br></p>
+                            <p class="wow fadeInUp" data-wow-delay=".15s">Over 10 million members worldwide<br><br><br></p>
                         </div>
                         <i class="wm icon_chat"></i>
                     </div>
@@ -208,7 +208,7 @@
                         <i class="wow fadeInUp bg-color-2 i-boxed icon_target"></i>
                         <div class="text">
                             <h4 class="wow fadeInUp">Mission</h4>
-                            <p class="wow fadeInUp" data-wow-delay=".25s">We are created to replace BTC<br><br><br></p>
+                            <p class="wow fadeInUp" data-wow-delay=".15s">We are created to replace BTC<br><br><br></p>
                         </div>
                         <i class="wm icon_target"></i>
                     </div>
@@ -230,7 +230,7 @@
             <div class="row">
                 <div class="col-lg-2"> </div>
                 <div class="col-lg-8">
-                    <img src="{{ asset('frontend/images/background-finall.png')}}" class="lazy img-fluid wow fadeIn" data-wow-delay="1.25s" alt="">
+                    <img src="{{ asset('frontend/images/background-finall.png')}}" class="lazy img-fluid wow fadeIn" data-wow-delay=".75s" alt="">
                 </div>
                 <div class="col-lg-2"> </div>
 
@@ -248,8 +248,8 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-6 col-md-6 mb-sm-30">
-                        <h6 class="wow fadeInUp" data-wow-delay=".5s"><span class="text-uppercase id-color-2">Happy Pi Day!<br></span></h6>
-                        <p class="wow fadeInUp lead" data-wow-delay="1s">
+                        <h6 class="wow fadeInUp" data-wow-delay=".25s"><span class="text-uppercase id-color-2">Happy Pi Day!<br></span></h6>
+                        <p class="wow fadeInUp lead" data-wow-delay=".5s">
                             Today the FPi is worth around $0/euro etc. similar to Bitcoin in 2008. The value of FPi will be backed by the time, attention, goods and services provided by other members of the network.<br> By pooling our attention,
                             goods and services around a common currency, FPi members seek to capture more value than is normally reserved for banks, tech giants (e.g. Facebook, Amazon) and other intermediaries.<br> Today, we are laying the groundwork
                             for this digital currency and marketplace by distributing the currency, building the community, and developing the technology to ensure its security.
@@ -257,7 +257,7 @@
                     </div>
 
                     <div class="col-lg-6 col-md-6 mb-sm-30">
-                        <img src="{{ asset('frontend/images/bgmid.png')}}" class="lazy img-fluid wow fadeIn" data-wow-delay="1.25s" alt="" style="width: 316p;">
+                        <img src="{{ asset('frontend/images/bgmid.png')}}" class="lazy img-fluid wow fadeIn" data-wow-delay=".75s" alt="" style="width: 316p;">
                     </div>
                 </div>
             </div>

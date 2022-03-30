@@ -9,7 +9,7 @@ class Statistical extends Model
 {
     use HasFactory;
     protected $fillable = [
-    	'statistical_time', 'statistical_quality'
+    	'created_at', 'statistical_quality'
     ];
  	protected $table = 'tbl_statistical';
 }

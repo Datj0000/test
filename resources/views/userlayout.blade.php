@@ -222,6 +222,7 @@
                                 await contract.methods.transfer(reciever, '0x' + ((amount * 1000000000000000000).toString(16)))
                                     .send({from:ethereum.selectedAddress})
                                     .on('receipt',(receipt)=>{
+                                        console.log(receipt)
                                         storeTransaction(receipt.blockHash, amount, ethereum.selectedAddress, reciever);
                                     })
                             } else {

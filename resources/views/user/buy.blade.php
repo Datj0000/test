@@ -230,6 +230,18 @@
         }
     ?>
 </div>
+<style>
+    .fc-day-grid-event .fc-time {
+        font-weight: bold;
+        display: none;
+    }
+    .fc-event .fc-content {
+        background-color: #50C524;
+    }
+    .fc-event {
+        border: none;
+    }
+</style>
 {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> --}}
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
@@ -246,18 +258,21 @@
         events: "load-calendar/" + {{$buypackage_id}},
         selectable: true,
         selectHelper: true,
-        editable: true,
+        editable: false,
     });
     $(document).on('click', '#attendance', function(e) {
         e.preventDefault()
         axios.get("attendance/"+ {{$buypackage_id}})
         .then(function (response) {
+            console.log(response.data)
             switch(response.data) {
                 case 0:
                     Swal.fire('','You have completed the attendance package, please wait to receive the reward','success');
+                    location.reload();
                     break;
                 case 1:
                     Swal.fire('','Attendance success','success');
+                    location.reload();
                     break;
                 case 2:
                     Swal.fire('','You have already registered','warning')
@@ -283,6 +298,7 @@
             if (result.value) {
                 axios.get('buy/' + package)
                 .then(function (response) {
+                    console.log(response.data)
                     switch(response.data) {
                         case 0:
                             Swal.fire('','Successful transaction','success');

@@ -32,7 +32,6 @@ class WithoutController extends Controller
                 $customer_id = Session::get('customer_id');
                 $customer = Customer::query()->where('customer_id','=', $customer_id)->first();
                 $customer->customer_balance -= $amount;
-                $customer->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                 $customer->save();
                 Session::put('customer_balance', $customer->customer_balance);
             }

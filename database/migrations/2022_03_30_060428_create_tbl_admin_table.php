@@ -21,6 +21,7 @@ class CreateTblAdminTable extends Migration
             $table->string('admin_password');
             $table->string('admin_image')->nullable();
             $table->string('admin_token')->nullable();
+            $table->timestamps();
         });
     }
 

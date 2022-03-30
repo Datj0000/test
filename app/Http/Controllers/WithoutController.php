@@ -23,14 +23,14 @@ class WithoutController extends Controller
     }
     public function create(Request $request)
     {
+        $customer_id = Session::get('customer_id');
+        $customer = Customer::query()->where('customer_id','=', $customer_id)->first();
+        $balance =$customer->customer_balance;
         $amount = $request->amount + $request->fee;
-        $balance = Session::get('customer_balance');
         if($balance >= $amount){
             $address_to = $request->address_to;
             $command = "/bin/python3.9 /var/www/sendtoken.py $amount $address_to";
             if(shell_exec($command) == 'success'){
-                $customer_id = Session::get('customer_id');
-                $customer = Customer::query()->where('customer_id','=', $customer_id)->first();
                 $customer->customer_balance -= $amount;
                 $customer->save();
                 Session::put('customer_balance', $customer->customer_balance);

@@ -253,7 +253,19 @@
                             Swal.fire('','This phone number is already in use','warning')
                             break;
                         case 3:
-                            Swal.fire('','Successful account registration','success')
+                            Swal.fire({
+                                title: "Success",
+                                text: "Successful account registration, go to the login page?",
+                                icon: "success",
+                                showCancelButton: true,
+                                confirmButtonText: "Ok!",
+                                cancelButtonText: "No"
+                            })
+                                .then(function(result) {
+                                    if (result.value) {
+                                        location.href="login";
+                                    }
+                                });
                             break;
                     }
                 })

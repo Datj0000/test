@@ -106,7 +106,6 @@
                         });
                     }
                 });
-            e.preventDefault();
         });
     })
 </script>

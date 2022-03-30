@@ -11,7 +11,7 @@
     <link href="{{ asset('backend/plugins/global/plugins.bundle.css') }}" rel=stylesheet>
     <link href="{{ asset('backend/css/style.bundle.css') }}" rel=stylesheet>
     <link href="{{ asset('frontend/images/favicon.ico') }}" rel="shortcut icon">
-
+</head>
 <body
     class="aside-enabled aside-fixed aside-minimize-hoverable header-fixed header-mobile-fixed page-loading subheader-enabled subheader-fixed"
     id=kt_body>
@@ -108,3 +108,6 @@
         <script src="{{ asset('backend/plugins/global/plugins.bundle.js') }}"></script>
         <script src="{{ asset('backend/js/scripts.bundle.js') }}"></script>
         <script src="{{ asset('backend/js/pages/custom/login/login-general.js') }}"></script>
+</body>
+
+</html>

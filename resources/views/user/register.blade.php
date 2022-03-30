@@ -71,7 +71,7 @@
                                 <div class="field-set">
                                     <label>Email Address:</label>
                                     <input type='email' name='email' id='email' class="form-control" required>
-                                    <div id="email-validation" class="invalid-feedback">Please ceck mail again.</div>
+                                    <div id="email-validation" class="invalid-feedback">Please check mail again.</div>
                                 </div>
                             </div>
                             <div class="col-md-6">

@@ -22,7 +22,6 @@ class BuyPackageController extends Controller
         $customer = Customer::query()->where('id','=',$customer_id)->first();
         if($check){
             $nextweek = Carbon::parse($check->created_at)->addWeek()->format('Y-m-d');
-            echo $nextweek;
             if($nextweek > $check->created_at){
                 if($customer->customer_balance >= $package){
                     $customer->customer_balance -= $package;

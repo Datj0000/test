@@ -305,8 +305,7 @@
                             location.reload();
                             break;
                         case 1:
-                            Swal.fire('','7 days from the date of purchase of the package, you can buy a new package','warning');
-                            location.reload();
+                            Swal.fire('','After completing the event list, you can buy a new package','warning');
                             break;
                         case 2:
                             Swal.fire('','Your account does not have enough money','warning');

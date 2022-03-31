@@ -55,9 +55,10 @@ class Attendance extends Command
                 if($customer->customer_role == 1){
                     $attendance = new AttendanceModel();
                     $attendance->buypackage_id = $item->id;
+                    $attendance->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                     $check = AttendanceModel::query()->where('buypackage_id','=',$item->id)->orderBy('id', 'DESC')->first();
                     if($check){
-                        if(Carbon::parse($check->created_at)->format('Y-m-d') < $today){
+                        if(Carbon::parse($check->created_at)->lt($today)){
                             $check_statistical = StatisticalModel::query()->where('created_at','>=',$today)->first();
                             if($check_statistical){
                                 $check_statistical->statistical_quantity += 1;
@@ -74,7 +75,7 @@ class Attendance extends Command
                 }
                 $attendance2 = AttendanceModel::query()->where('buypackage_id','=', $item->id)->orderBy('id', 'DESC')->first();
                 if ($attendance2) {
-                    if(Carbon::parse($attendance2->created_at)->format('Y-m-d') < $today){
+                    if(Carbon::parse($attendance2->created_at)->lt($today)){
                         $item->status = 1;
                         $item->save();
                         $check_wallet2 = WalletModel::query()->where('created_at','>=',$today)->first();
@@ -91,11 +92,12 @@ class Attendance extends Command
                         $noti2->notification_status = 0;
                         $noti2->notification_amount = $item->package;
                         $noti2->customer_id = $item->customer_id;
+                        $noti2->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                         $noti2->save();
                     }
                 }
                 else {
-                    if(Carbon::parse($attendance2->created_at)->format('Y-m-d') < $today){
+                    if(Carbon::parse($item->created_at)->lt($today)){
                         $item->status = 1;
                         $item->save();
                         $check_wallet = WalletModel::query()->where('created_at','>=',$today)->first();
@@ -112,6 +114,7 @@ class Attendance extends Command
                         $noti->notification_status = 0;
                         $noti->notification_amount = $item->package;
                         $noti->customer_id = $item->customer_id;
+                        $noti->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                         $noti->save();
                     }
                 }
@@ -139,6 +142,7 @@ class Attendance extends Command
                     }
                     $noti3->notification_status = 1;
                     $noti3->customer_id = $item->customer_id;
+                    $noti3->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                     $customer->save();
                     $noti3->save();
                 }

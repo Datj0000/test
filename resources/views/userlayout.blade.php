@@ -268,11 +268,11 @@
                                         text: 'Without success',
                                     })
                                     break;
-                                case 'fail':
+                                case 'failed':
                                     Swal.fire({
                                         icon: 'warning',
                                         title: 'Fail',
-                                        text: 'Without success',
+                                        text: 'Without fail',
                                     })
                                     break;
                                 case 1:
@@ -288,7 +288,7 @@
                             Swal.fire({
                                     icon: 'warning',
                                     title: 'Fail',
-                                    text: 'Without success',
+                                    text: 'Without fail',
                                 })
                         });
                     } catch (Exception) {

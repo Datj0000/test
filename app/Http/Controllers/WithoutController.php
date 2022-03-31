@@ -24,7 +24,7 @@ class WithoutController extends Controller
     public function create(Request $request)
     {
         $customer_id = Session::get('customer_id');
-        $customer = Customer::query()->where('customer_id','=', $customer_id)->first();
+        $customer = Customer::query()->where('id','=', $customer_id)->first();
         $balance =$customer->customer_balance;
         $amount = $request->amount + $request->fee;
         if($balance >= $amount){

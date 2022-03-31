@@ -13,7 +13,7 @@ class Admin extends Authenticatable
     protected $table = 'tbl_admin';
     protected $primaryKey = 'id';
     protected $fillable = [
-    	'admin_email', 'admin_password', 'admin_name','admin_username', 'admin_token'
+    	'admin_email', 'admin_password', 'admin_name','admin_username', 'admin_token', 'admin_image'
     ];
  	public function getAuthPassword(){
  		return $this->admin_password;

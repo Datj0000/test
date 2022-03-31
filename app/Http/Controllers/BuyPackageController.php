@@ -17,36 +17,19 @@ class BuyPackageController extends Controller
         $buypackage = new BuyPackage();
         $buypackage->customer_id = $customer_id;
         $buypackage->package = $package;
-        $buypackage->created_at = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
         $check = BuyPackage::query()->where('customer_id','=',$customer_id)->where('status','=',0)->orderBy('id', 'DESC')->first();
         $customer = Customer::query()->where('id','=',$customer_id)->first();
         if($check){
-            $nextweek = Carbon::parse($check->created_at)->addWeek()->format('Y-m-d');
-            if($nextweek > $check->created_at){
-                if($customer->customer_balance >= $package){
-                    $customer->customer_balance -= $package;
-                    $customer->save();
-                    $buypackage->save();
-                    Session::put('customer_balance', $customer->customer_balance);
-                    echo 0;
-                }
-                else{
-                    echo 2;
-                }
-            }
-            else{
-                echo 1;
-            }
-        }
-        else{
+            echo 1;
+        }else{
             if($customer->customer_balance >= $package){
+                $buypackage->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                 $buypackage->save();
                 $customer->customer_balance = $customer->customer_balance - $package;
                 $customer->save();
                 echo 0;
                 Session::put('customer_balance', $customer->customer_balance);
-            }
-            else{
+            }else{
                 echo 2;
             }
         }
@@ -65,22 +48,22 @@ class BuyPackageController extends Controller
                         </tr>
                     </thead>';
         foreach ($buypackage as $key => $item) {
-                $output .= '
+            $output .= '
                     <tr>
                         <th scope="row">'.$i++.'</th>
                         <td>'.$item->package.' FPI</td>
                         <td>'.$item->created_at.'</td>
                         ';
-                        if($item->statu == 0){
-                            $output .= '<td>In progress</td>';
-                        }
-                        else if($item->statu == 1){
-                            $output .= '<td>Failed</td>';
-                        }
-                        else {
-                            $output .= '<td>Succeeded</td>';
-                        }
-                $output .= '</tr>';
+            if($item->statu == 0){
+                $output .= '<td>In progress</td>';
+            }
+            else if($item->statu == 1){
+                $output .= '<td>Failed</td>';
+            }
+            else {
+                $output .= '<td>Succeeded</td>';
+            }
+            $output .= '</tr>';
         }
         $output .= '</tbody>
                 </table>';

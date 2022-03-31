@@ -59,7 +59,7 @@ class HomeController extends Controller
         $customer_id = Session::get('customer_id');
         $buypackage_id = 0;
         if ($customer_id) {
-            $today = Carbon::now('Asia/Ho_Chi_Minh');
+            $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
             $check_package = BuyPackage::query()->where('customer_id','=',$customer_id)->where('status','=',0)->where('created_at','<=',$today)->first();
             if ($check_package) {
                 $buypackage_id = $check_package->id;

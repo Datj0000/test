@@ -17,13 +17,12 @@ class AttendanceController extends Controller
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
         $check = Attendance::query()->where('buypackage_id','=',$buypackage_id)->orderBy('id', 'DESC')->first();
         if($check){
-            if(Carbon::parse($check->created_at)->format('Y-m-d') < $today){
+            if(Carbon::parse($check->created_at)->lt($today)){
                 $check_statistical = Statistical::query()->where('created_at','>=',$today)->first();
                 if($check_statistical){
                     $check_statistical->statistical_quantity += 1;
                     $check_statistical->save();
-                }
-                else{
+                }else{
                     $statistical = new Statistical();
                     $statistical->statistical_quantity = 1;
                     $statistical->save();

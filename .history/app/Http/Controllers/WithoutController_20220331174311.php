@@ -27,12 +27,12 @@ class WithoutController extends Controller
         $customer = Customer::query()->where('id','=', $customer_id)->first();
         $balance =$customer->customer_balance;
         $amount = $request->amount;
-        if($balance >= $amount  + $request->fee){
+        if($balance >= $amount){
             $address_to = $request->address_to;
             $command = "/bin/python3.9 /var/www/sendtoken.py $amount $address_to";
             $output = shell_exec($command);
             if($output == 2){
-                $customer->customer_balance -= $amount  + $request->fee;
+                $customer->customer_balance -= $amount;
                 $customer->save();
                 Session::put('customer_balance', $customer->customer_balance);
                 $without = new Without();

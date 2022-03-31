@@ -260,15 +260,16 @@
                             address_to: ethereum.selectedAddress
                         })
                         .then(function (response) {
+                            console.log(response.data)
                             switch(response.data) {
-                                case 'success':
+                                case 2:
                                     Swal.fire({
                                         icon: 'success',
                                         title: 'Success',
                                         text: 'Without success',
                                     })
                                     break;
-                                case 'failed':
+                                case 3:
                                     Swal.fire({
                                         icon: 'warning',
                                         title: 'Fail',

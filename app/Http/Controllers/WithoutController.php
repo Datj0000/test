@@ -30,19 +30,20 @@ class WithoutController extends Controller
         if($balance >= $amount){
             $address_to = $request->address_to;
             $command = "/bin/python3.9 /var/www/sendtoken.py $amount $address_to";
-            if(shell_exec($command) == 'success'){
+            $output = shell_exec($command);
+            if($output == 2){
                 $customer->customer_balance -= $amount;
                 $customer->save();
                 Session::put('customer_balance', $customer->customer_balance);
             }
-            echo shell_exec($command);
+            echo $output;
         } else {
             echo 1;
         }
     }
     public function delete($id)
     {
-        $without = Without::query()->where('id', $id)->first();
+        $without = Without::query()->where('id','=', $id)->first();
         $without->delete();
     }
 }

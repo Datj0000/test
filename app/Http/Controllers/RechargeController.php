@@ -36,6 +36,7 @@ class RechargeController extends Controller
         $recharge->amount = $data['amount'];
         $recharge->tran_from = $data['from'];
         $recharge->tran_to = $data['to'];
+        $recharge->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $recharge->save();
         $customer = Customer::query()->where('id','=', $customer_id)->first();
         $customer->customer_balance += $data['amount'];

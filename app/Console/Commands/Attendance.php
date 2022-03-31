@@ -62,11 +62,13 @@ class Attendance extends Command
                             $check_statistical = StatisticalModel::query()->where('created_at','>=',$today)->first();
                             if($check_statistical){
                                 $check_statistical->statistical_quantity += 1;
+                                $check_statistical->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                                 $check_statistical->save();
                             }
                             else{
                                 $statistical = new StatisticalModel();
                                 $statistical->statistical_quantity = 1;
+                                $statistical->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                                 $statistical->save();
                             }
                             $attendance->save();
@@ -74,49 +76,27 @@ class Attendance extends Command
                     }
                 }
                 $attendance2 = AttendanceModel::query()->where('buypackage_id','=', $item->id)->orderBy('id', 'DESC')->first();
-                if ($attendance2) {
-                    if(Carbon::parse($attendance2->created_at)->lt($today)){
-                        $item->status = 1;
-                        $item->save();
-                        $check_wallet2 = WalletModel::query()->where('created_at','>=',$today)->first();
-                        if($check_wallet2){
-                            $check_wallet2->wallet_balance += $item->package;
-                            $check_wallet2->save();
-                        }
-                        else{
-                            $wallet2 = new WalletModel();
-                            $wallet2->wallet_balance = $item->package;
-                            $wallet2->save();
-                        }
-                        $noti2 = new NotificationModel();
-                        $noti2->notification_status = 0;
-                        $noti2->notification_amount = $item->package;
-                        $noti2->customer_id = $item->customer_id;
-                        $noti2->created_at = Carbon::now('Asia/Ho_Chi_Minh');
-                        $noti2->save();
+                if (($attendance2 && Carbon::parse($attendance2->created_at)->lt($today)) || (!$attendance2 && Carbon::parse($item->created_at)->lt($today))) {
+                    $item->status = 1;
+                    $item->save();
+                    $check_wallet2 = WalletModel::query()->where('created_at','>=',$today)->first();
+                    if($check_wallet2){
+                        $check_wallet2->wallet_balance += $item->package;
+                        $check_wallet2->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+                        $check_wallet2->save();
                     }
-                }
-                else {
-                    if(Carbon::parse($item->created_at)->lt($today)){
-                        $item->status = 1;
-                        $item->save();
-                        $check_wallet = WalletModel::query()->where('created_at','>=',$today)->first();
-                        if($check_wallet){
-                            $check_wallet->wallet_balance += $item->package;
-                            $check_wallet->save();
-                        }
-                        else{
-                            $wallet = new WalletModel();
-                            $wallet->wallet_balance = $item->package;
-                            $wallet->save();
-                        }
-                        $noti = new NotificationModel();
-                        $noti->notification_status = 0;
-                        $noti->notification_amount = $item->package;
-                        $noti->customer_id = $item->customer_id;
-                        $noti->created_at = Carbon::now('Asia/Ho_Chi_Minh');
-                        $noti->save();
+                    else{
+                        $wallet2 = new WalletModel();
+                        $wallet2->wallet_balance = $item->package;
+                        $wallet2->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+                        $wallet2->save();
                     }
+                    $noti2 = new NotificationModel();
+                    $noti2->notification_status = 0;
+                    $noti2->notification_amount = $item->package;
+                    $noti2->customer_id = $item->customer_id;
+                    $noti2->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+                    $noti2->save();
                 }
                 $check_attendane = AttendanceModel::query()->where('buypackage_id','=',$item->id)->get();
                 if($check_attendane->count() == 7){

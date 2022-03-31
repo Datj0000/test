@@ -21,10 +21,12 @@ class AttendanceController extends Controller
                 $check_statistical = Statistical::query()->where('created_at','>=',$today)->first();
                 if($check_statistical){
                     $check_statistical->statistical_quantity += 1;
+                    $check_statistical->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                     $check_statistical->save();
                 }else{
                     $statistical = new Statistical();
                     $statistical->statistical_quantity = 1;
+                    $statistical->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                     $statistical->save();
                 }
                 $attendance->save();
@@ -42,11 +44,13 @@ class AttendanceController extends Controller
             $check_statistical = Statistical::query()->where('created_at','>=',$today)->first();
             if($check_statistical){
                 $check_statistical->statistical_quantity += 1;
+                $check_statistical->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                 $check_statistical->save();
             }
             else{
                 $statistical = new Statistical();
                 $statistical->statistical_quantity = 1;
+                $statistical->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                 $statistical->save();
             }
             echo 1;

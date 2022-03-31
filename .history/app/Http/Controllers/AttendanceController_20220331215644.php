@@ -14,7 +14,6 @@ class AttendanceController extends Controller
     {
         $attendance = new Attendance();
         $attendance->buypackage_id = $buypackage_id;
-        $attendance->created_at = Carbon::now('Asia/Ho_Chi_Minh');
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
         $check = Attendance::query()->where('buypackage_id','=',$buypackage_id)->orderBy('id', 'DESC')->first();
         if($check){

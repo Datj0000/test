@@ -52,10 +52,10 @@ class WithoutController extends Controller
         $without = Without::query()->where('id','=', $id)->first();
         $without->delete();
     }
-    public function load_without(){
+    public function load_recharge(){
         $i = 1;
         $customer_id = Session::get('customer_id');
-        $without = Without::query()->where('customer_id','=',$customer_id)->get();
+        $recharge = Recharge::query()->where('customer_id','=',$customer_id)->get();
         $output = '<table class="table">
                     <thead>
                         <tr>
@@ -64,11 +64,11 @@ class WithoutController extends Controller
                             <th scope="col">Created at</th>
                         </tr>
                     </thead>';
-        foreach ($without as $key => $item) {
+        foreach ($recharge as $key => $item) {
                 $output .= '
                     <tr>
                         <th scope="row">'.$i++.'</th>
-                        <td>'.$item->without_amount.' FPI</td>
+                        <td>'.$item->amount.' FPI</td>
                         <td>'.$item->created_at.'</td>';
                 $output .= '</tr>';
         }

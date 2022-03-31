@@ -52,28 +52,4 @@ class WithoutController extends Controller
         $without = Without::query()->where('id','=', $id)->first();
         $without->delete();
     }
-    public function load_without(){
-        $i = 1;
-        $customer_id = Session::get('customer_id');
-        $without = Without::query()->where('customer_id','=',$customer_id)->get();
-        $output = '<table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">No.</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Created at</th>
-                        </tr>
-                    </thead>';
-        foreach ($without as $key => $item) {
-                $output .= '
-                    <tr>
-                        <th scope="row">'.$i++.'</th>
-                        <td>'.$item->without_amount.' FPI</td>
-                        <td>'.$item->created_at.'</td>';
-                $output .= '</tr>';
-        }
-        $output .= '</tbody>
-                </table>';
-        echo $output;
-    }
 }

@@ -151,7 +151,7 @@
                     <div class="de_tab tab_simple">
                         <ul class="de_nav">
                             <li onclick="load_recharge()" class="active"><span><i class="fa fa-user"></i>Recharge history</span></li>
-                            <li onclick="load_without()"><span><i class="fa fa-sign-out"></i>Without history</span></li>
+                            <li onclick="load_without()"><span><i class="fa fa-exclamation-circle"></i>Without history</span></li>
                             <li onclick="load_package()"><span><i class="fa fa-exclamation-circle"></i>Package purchase history</span></li>
                         </ul>
                         <div class="de_tab_content">
@@ -177,8 +177,8 @@
             console.log(error);
         });
     }
-    function load_without(){
-        axios.get("load-without")
+    function load_recharge(){
+        axios.get("load-recharge")
         .then(function(response) {
             $("#view_history").html(response.data)
         })

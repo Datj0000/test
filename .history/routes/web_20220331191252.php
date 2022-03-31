@@ -70,7 +70,7 @@ Route::get('/all-without',[WithoutController::class,'view']);
 Route::get('/fetchdata-without',[WithoutController::class,'fetchdata']);
 Route::post('/create-without',[WithoutController::class,'create']);
 Route::get('/delete-without/{without_id}',[WithoutController::class,'delete']);
-Route::get('/load-without',[WithoutController::class,'load_without']);
+Route::get('/load-without',[RechargeController::class,'load_without']);
 
 //Attendance
 Route::get('/attendance/{buypackage_id}',[AttendanceController::class,'create']);

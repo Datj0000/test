@@ -68,7 +68,7 @@ class WithoutController extends Controller
                 $output .= '
                     <tr>
                         <th scope="row">'.$i++.'</th>
-                        <td>'.$item->without_amount.' FPI</td>
+                        <td>'.$item->amount.' FPI</td>
                         <td>'.$item->created_at.'</td>';
                 $output .= '</tr>';
         }

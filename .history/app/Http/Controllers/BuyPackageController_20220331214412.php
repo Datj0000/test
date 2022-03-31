@@ -13,6 +13,7 @@ class BuyPackageController extends Controller
     public function create($package)
     {
         $customer_id = Session::get('customer_id');
+
         $check = BuyPackage::query()->where('customer_id','=',$customer_id)->where('status','=',0)->orderBy('id', 'DESC')->first();
         if($check){
             return 1;
@@ -26,8 +27,8 @@ class BuyPackageController extends Controller
                 $buypackage->save();
                 $customer->customer_balance -= $package;
                 $customer->save();
-                Session::put('customer_balance', $customer->customer_balance);
                 return 0;
+                Session::put('customer_balance', $customer->customer_balance);
             }else{
                 return 2;
             }

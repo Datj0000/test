@@ -26,7 +26,6 @@ class BuyPackageController extends Controller
                 $buypackage->save();
                 $customer->customer_balance -= $package;
                 $customer->save();
-                Session::put('customer_balance', $customer->customer_balance);
                 return 0;
             }else{
                 return 2;

@@ -4,30 +4,31 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\BuyPackage;
-use App\Models\Customer;
+use App\Models\Statistical;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Session;
+use App\Models\Customer;
 
 class BuyPackageController extends Controller
 {
     public function create($package)
     {
         $customer_id = Session::get('customer_id');
+        $buypackage = new BuyPackage();
+        $buypackage->customer_id = $customer_id;
+        $buypackage->package = $package;
         $check = BuyPackage::query()->where('customer_id','=',$customer_id)->where('status','=',0)->orderBy('id', 'DESC')->first();
+        $customer = Customer::query()->where('id','=',$customer_id)->first();
         if($check){
             return 1;
         }else{
-            $customer = Customer::query()->where('id','=',$customer_id)->first();
             if($customer->customer_balance >= $package){
-                $buypackage = new BuyPackage();
-                $buypackage->customer_id = $customer_id;
-                $buypackage->package = $package;
                 $buypackage->created_at = Carbon::now('Asia/Ho_Chi_Minh');
                 $buypackage->save();
                 $customer->customer_balance -= $package;
                 $customer->save();
-                Session::put('customer_balance', $customer->customer_balance);
                 return 0;
+                Session::put('customer_balance', $customer->customer_balance);
             }else{
                 return 2;
             }

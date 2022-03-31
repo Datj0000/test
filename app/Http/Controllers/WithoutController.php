@@ -35,6 +35,12 @@ class WithoutController extends Controller
                 $customer->customer_balance -= $amount;
                 $customer->save();
                 Session::put('customer_balance', $customer->customer_balance);
+                $without = new Without();
+                $without->customer_id = $customer_id;
+                $without->without_amount = $amount;
+                $without->without_account = $address_to;
+                $without->created_at = Carbon::now('Asia/Ho_Chi_Minh');
+                $without->save();
             }
             echo $output;
         } else {

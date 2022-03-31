@@ -358,7 +358,7 @@
                         Swal.fire("", "This phone number has been used then!", "warning");
                     }else if (response.data == 2) {
                         Swal.fire({
-                            text: "Update information successfully",
+                            text: "Update information successfully?",
                             icon: "success",
                             showCancelButton: false,
                             confirmButtonText: "Ok!",

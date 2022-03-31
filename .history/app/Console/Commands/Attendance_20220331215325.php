@@ -140,4 +140,3 @@ class Attendance extends Command
         }
     }
 }
-

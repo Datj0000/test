@@ -301,6 +301,7 @@
                     console.log(response.data)
                     switch(response.data) {
                         case 0:
+                            Swal.fire('','Successful transaction','success');
                             Swal.fire({
                                 text: "Successful transaction",
                                 icon: "success",

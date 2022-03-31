@@ -301,8 +301,9 @@
                     console.log(response.data)
                     switch(response.data) {
                         case 0:
+                            Swal.fire('','Successful transaction','success');
                             Swal.fire({
-                                text: "Successful transaction",
+                                text: "Update information successfully?",
                                 icon: "success",
                                 showCancelButton: false,
                                 confirmButtonText: "Ok!",
@@ -312,6 +313,7 @@
                                     location.reload();
                                 }
                             });
+                            location.reload();
                             break;
                         case 1:
                             Swal.fire('','After completing the event list, you can buy a new package','warning');

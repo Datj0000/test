@@ -301,17 +301,9 @@
                     console.log(response.data)
                     switch(response.data) {
                         case 0:
-                            Swal.fire({
-                                text: "Successful transaction",
-                                icon: "success",
-                                showCancelButton: false,
-                                confirmButtonText: "Ok!",
-                            })
-                            .then(function(result) {
-                                if (result.value) {
-                                    location.reload();
-                                }
-                            });
+                            Swal.fire('','Successful transaction','success');
+                            
+                            location.reload();
                             break;
                         case 1:
                             Swal.fire('','After completing the event list, you can buy a new package','warning');

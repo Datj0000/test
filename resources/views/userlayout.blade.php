@@ -227,6 +227,11 @@
                                     })
                             } else {
                                 ethereum.request({ method: 'wallet_switchEthereumChain', params:[{chainId: '0x38'}]})
+                                Swal.fire({
+                                    icon: 'warning',
+                                    title: 'Warning',
+                                    text: 'Please connect with BCS network in Metamask Wallet',
+                                })
                             }
                         }
                     }
@@ -252,46 +257,59 @@
                 if (typeof window.ethereum !== 'undefined') {
                     try {
                         ethereum.request({ method: 'eth_requestAccounts' });
-                        var amount = $('#amount_without').val();
-                        var fee = amount/100 * 1;
-                        axios.post("create-without", {
-                            amount: amount,
-                            fee: fee,
-                            address_to: ethereum.selectedAddress
-                        })
-                        .then(function (response) {
-                            console.log(response.data)
-                            switch(response.data) {
-                                case 2:
-                                    Swal.fire({
-                                        icon: 'success',
-                                        title: 'Success',
-                                        text: 'Without success',
-                                    })
-                                    break;
-                                case 3:
+                        let web3;
+                        if(window.ethereum){
+                            web3 = new Web3(window.ethereum);
+                            await ethereum.enable();
+                            if(window.ethereum.chainId == '0x38'){
+                                var amount = $('#amount_without').val();
+                                var fee = amount/100 * 1;
+                                axios.post("create-without", {
+                                    amount: amount,
+                                    fee: fee,
+                                    address_to: ethereum.selectedAddress
+                                })
+                                .then(function (response) {
+                                    switch(response.data) {
+                                        case 2:
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Success',
+                                                text: 'Without success, please wait minutes',
+                                            })
+                                            break;
+                                        case 3:
+                                            Swal.fire({
+                                                icon: 'warning',
+                                                title: 'Fail',
+                                                text: 'Without fail',
+                                            })
+                                            break;
+                                        case 1:
+                                            Swal.fire({
+                                                icon: 'warning',
+                                                title: 'Fail',
+                                                text: 'Your account does not have enough FPI',
+                                            })
+                                            break;
+                                    }
+                                })
+                                .catch((error) => {
                                     Swal.fire({
                                         icon: 'warning',
                                         title: 'Fail',
                                         text: 'Without fail',
                                     })
-                                    break;
-                                case 1:
-                                    Swal.fire({
-                                        icon: 'warning',
-                                        title: 'Fail',
-                                        text: 'Your account does not have enough FPI',
-                                    })
-                                    break;
-                            }
-                        })
-                        .catch((error) => {
-                            Swal.fire({
+                                });
+                            } else {
+                                ethereum.request({ method: 'wallet_switchEthereumChain', params:[{chainId: '0x38'}]})
+                                Swal.fire({
                                     icon: 'warning',
-                                    title: 'Fail',
-                                    text: 'Without fail',
+                                    title: 'Warning',
+                                    text: 'Please connect with BCS network in Metamask Wallet',
                                 })
-                        });
+                            }
+                        }
                     } catch (Exception) {
                         Swal.fire({
                             icon: 'warning',

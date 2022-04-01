@@ -298,7 +298,6 @@
             if (result.value) {
                 axios.get('buy/' + package)
                 .then(function (response) {
-                    console.log(response.data)
                     switch(response.data) {
                         case 0:
                             Swal.fire({
@@ -318,17 +317,14 @@
                             break;
                         case 2:
                             Swal.fire({
+                                title: "Question",
                                 text: "Your account does not have enough money. Do you want to deposit?",
                                 icon: "question",
                                 showCancelButton: true,
-                                confirmButtonText: "Ok!",
+                                confirmButtonText:
+                                    '<span data-bs-toggle="modal" data-bs-target="#rechargemodel">Ok!</span>',
                                 cancelButtonText: "No"
                             })
-                            .then(function(result) {
-                                if (result.value) {
-                                    $('#rechargemodel').show();
-                                }
-                            });
                             break;
                     }
                 })

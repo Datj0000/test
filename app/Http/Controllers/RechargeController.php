@@ -53,7 +53,7 @@ class RechargeController extends Controller
         $customer_id = Session::get('customer_id');
         $recharge = Recharge::query()->where('customer_id','=',$customer_id)->get();
         $output = '<table class="table">
-                    <thead>
+             `````````````````````````````````````````````````````````````````       <thead>
                         <tr>
                             <th scope="col">No.</th>
                             <th scope="col">Price</th>

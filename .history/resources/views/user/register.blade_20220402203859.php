@@ -137,7 +137,7 @@
     const reSpaces = /^\S*$/;
     function validateUsername(e) {
         const username = document.querySelector('#username');
-        if (username.value.length > 5 && reSpaces.test(username.value) ) {
+        if (username.length > 3 && reSpaces.test(username.value) ) {
             username.classList.remove('is-invalid');
             username.classList.add('is-valid');
             return true;

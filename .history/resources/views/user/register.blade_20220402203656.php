@@ -75,7 +75,7 @@
                                 <div class="field-set">
                                     <label>Choose a Username:</label>
                                     <input type='text' name='username' id='username' class="form-control" required>
-                                    <div class="invalid-feedback">Username must have at least 6 characters and no spaces</div>
+                                    <div class="invalid-feedback">Username must have at least 6 characters and  have space</div>
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -137,13 +137,17 @@
     const reSpaces = /^\S*$/;
     function validateUsername(e) {
         const username = document.querySelector('#username');
-        if (username.length > 5 && reSpaces.test(username.value) ) {
+        if (username.value != "" && reSpaces.test(username.value)) {
             username.classList.remove('is-invalid');
             username.classList.add('is-valid');
             return true;
-        } else {
+        } else if (username.length < 7) {
             username.classList.remove('is-valid');
             username.classList.add('is-invalid');
+            return false;
+        } else {
+            username.classList.remove('is-valid');
+            username.classList.add('is-invalid-2');
             return false;
         }
     }

@@ -137,13 +137,17 @@
     const reSpaces = /^\S*$/;
     function validateUsername(e) {
         const username = document.querySelector('#username');
-        if (username.length > 5 && reSpaces.test(username.value) ) {
+        if (username.username.length && reSpaces.test(username.value) ) {
             username.classList.remove('is-invalid');
             username.classList.add('is-valid');
             return true;
-        } else {
+        } else if (username.length < 7) {
             username.classList.remove('is-valid');
             username.classList.add('is-invalid');
+            return false;
+        } else {
+            username.classList.remove('is-valid');
+            username.classList.add('is-invalid-2');
             return false;
         }
     }

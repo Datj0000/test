@@ -494,14 +494,8 @@ header div#logo {
     -moz-transition: all 0.3s;
     -ms-transition: all 0.3s;
     -o-transition: all 0.3s;
-    transition: all 0.3s;
+    transition: all 0.3s;   
 }
-@media screen and (max-width: 767.98px) {
-    header div#logo img{
-        width: 100px;
-    }
-}
-
 
 header .logo-2 {
     display: none;
@@ -16720,9 +16714,9 @@ img {
     header a.btn-main i {
         display: inline-block;
     }
-    /* header a.btn-main span {
+    header a.btn-main span {
         display: none;
-    } */
+    }
     #form_quick_search {
         margin-bottom: 0px;
     }

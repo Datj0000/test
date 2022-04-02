@@ -110,8 +110,10 @@
                             }
                             else {
                             ?>
-                            <a href="{{ URL::to('/login') }}" class="btn-main btn-wallet"><span>Login</span></a>
-                            <a href="{{ URL::to('/register') }}" class="btn-main btn-wallet"><span>Register</span></a>
+                            <a href="{{ URL::to('/login') }}" class="btn-main btn-wallet"><i
+                                    class="icon_wallet_alt"></i><span>Login</span></a>
+                            <a href="{{ URL::to('/register') }}" class="btn-main btn-wallet"><i
+                                    class="icon_wallet_alt"></i><span>Register</span></a>
                             <?php
                             }
                             ?>

@@ -105,7 +105,6 @@
                                         <li><a href="#" id="logout"><i class="fa fa-sign-out"></i> Sign out</a>
                                     </ul>
                                 </div>
-                                <span id="menu-btn"></span>
                             </div>
 
                             <?php
@@ -113,9 +112,9 @@
                             else {
                             ?>
                             <div class="menu_side_area">
-                                <a href="{{ URL::to('/login') }}" class="btn-main btn-wallet"><span>Login</span></a>
-                                <a href="{{ URL::to('/register') }}" class="btn-main btn-wallet"><span>Register</span></a>
-                                <span id="menu-btn"></span>
+                            <a href="{{ URL::to('/login') }}" class="btn-main btn-wallet"><span>Login</span></a>
+                            <a href="{{ URL::to('/register') }}" class="btn-main btn-wallet"><span>Register</span></a>
+                            <span id="menu-btn"></span>
                             </div>
                             <?php
                             }

@@ -503,7 +503,7 @@ header div#logo {
 }
 @media screen and (max-width: 479.98px) {
     header div#logo img{
-        width: 80px;
+        width: 0px;
     }
 }
 

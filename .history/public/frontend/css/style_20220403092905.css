@@ -501,9 +501,9 @@ header div#logo {
         width: 100px;
     }
 }
-@media screen and (max-width: 479.98px) {
+@media screen and (max-width: 767.98px) {
     header div#logo img{
-        width: 80px;
+        width: 100px;
     }
 }
 

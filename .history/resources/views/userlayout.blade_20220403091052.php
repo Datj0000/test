@@ -244,18 +244,10 @@
                     }
                 } else {
                     Swal.fire({
-                        title: "Warning",
-                        text: "Please install metamask wallet to continue paying",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonText:'Ok',
-                        cancelButtonText: "No"
+                        icon: 'warning',
+                        title: 'Warning',
+                        text: 'Not able to locate an Ethereum connection, please install a Metamask wallet',
                     })
-                    .then(function(result) {
-                        if (result.value) {
-                            window.open('https://metamask.io', '_blank');
-                        }
-                    });
                 }
             })()
         });
@@ -316,6 +308,15 @@
                                     title: 'Warning',
                                     text: 'Please connect with BCS network in Metamask Wallet',
                                 })
+                                Swal.fire({
+                                title: "Question",
+                                text: "Your account does not have enough money. Do you want to deposit?",
+                                icon: "question",
+                                showCancelButton: true,
+                                confirmButtonText:
+                                    '<span data-bs-toggle="modal" data-bs-target="#rechargemodel">Ok!</span>',
+                                cancelButtonText: "No"
+                            })
                             }
                         }
                     } catch (Exception) {
@@ -327,18 +328,10 @@
                     }
                 } else {
                     Swal.fire({
-                        title: "Warning",
-                        text: "Please install metamask wallet to continue paying",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonText:'Ok',
-                        cancelButtonText: "No"
+                        icon: 'warning',
+                        title: 'Warning',
+                        text: 'Not able to locate an Ethereum connection, please install a Metamask wallet',
                     })
-                    .then(function(result) {
-                        if (result.value) {
-                            window.open('https://metamask.io', '_blank');
-                        }
-                    });
                 }
             })()
         });

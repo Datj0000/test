@@ -244,18 +244,10 @@
                     }
                 } else {
                     Swal.fire({
-                        title: "Warning",
-                        text: "Please install metamask wallet to continue paying",
-                        icon: "warning",
-                        showCancelButton: true,
-                        confirmButtonText:'Ok',
-                        cancelButtonText: "No"
+                        icon: 'warning',
+                        title: 'Warning',
+                        text: 'Not able to locate an Ethereum connection, please install a Metamask wallet',
                     })
-                    .then(function(result) {
-                        if (result.value) {
-                            window.open('https://metamask.io', '_blank');
-                        }
-                    });
                 }
             })()
         });
@@ -336,7 +328,7 @@
                     })
                     .then(function(result) {
                         if (result.value) {
-                            window.open('https://metamask.io', '_blank');
+                            window.open('http://https://metamask.io', '_blank');
                         }
                     });
                 }

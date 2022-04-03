@@ -7,14 +7,14 @@
     }
 </style>
 <header class="transparent">
-    <div class="container">
+    <div class="container" style="padding: 30px 0;">
         <div class="row">
             <div class="col-md-12">
                 <div class="de-flex sm-pt10">
                     <div class="de-flex-col">
                         <div class="de-flex-col customer">
                             <!-- logo begin -->
-                            <div id="logo" style="padding: 20px 0;">
+                            <div id="logo">
                                 <a href="{{URL::to('/')}}">
                                     <img alt="" src="{{ asset('frontend/images/logo.png')}}" />
                                 </a>

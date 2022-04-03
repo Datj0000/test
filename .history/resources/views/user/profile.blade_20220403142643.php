@@ -74,25 +74,25 @@
                             if(isset($customer_id)){
                             ?>
                             <div class="de-login-menu">
-                            <span id="de-click-menu-notification" class="de-menu-notification">
-                                {{-- <span class="d-count">8</span> --}}
-                                <i class="fa fa-bell"></i>
-                            </span>
+                        <span id="de-click-menu-notification" class="de-menu-notification">
+                            {{-- <span class="d-count">8</span> --}}
+                            <i class="fa fa-bell"></i>
+                        </span>
 
                                 <span id="de-click-menu-profile" class="de-menu-profile">
-                                <?php
+                            <?php
                                     $customer_image = Session::get('customer_image');
                                     if(isset($customer_image)){
                                     ?>
-                                    <img src="{{ asset('uploads/avatar/' . $customer_image . '')}}" class="img-fluid" alt="">
-                                <?php
+                                <img src="{{ asset('uploads/avatar/' . $customer_image . '')}}" class="img-fluid" alt="">
+                            <?php
                                     }else{
                                     ?>
-                                    <img src="{{ asset('backend/media/users/blank.png')}}" class="img-fluid" alt="">
-                                <?php
+                                <img src="{{ asset('backend/media/users/blank.png')}}" class="img-fluid" alt="">
+                            <?php
                                     }
                                     ?>
-                            </span>
+                        </span>
 
                                 <div id="de-submenu-notification" class="de-submenu">
                                     <div class="de-flex">
@@ -128,7 +128,6 @@
                                         <li><a href="#" id="logout"><i class="fa fa-sign-out"></i> Sign out</a>
                                     </ul>
                                 </div>
-                                <span id="menu-btn"></span>
                             </div>
                             <?php
                             }
@@ -160,7 +159,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h1>Change your password</h1>
+                        <h1>Edit Profile</h1>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -180,34 +179,66 @@
                             <div class="de_tab_content">
                                 <div class="tab-1">
                                     <div class="row wow fadeIn">
-                                        <div class="col-lg-12 mb-sm-20">
+                                        <div class="col-lg-8 mb-sm-20">
                                             <div class="field-set">
-                                                <h5>Old password</h5>
-                                                <input type="password" name="old-password" id="old-password" class="form-control"
-                                                    placeholder="Enter old password" />
+                                                <h5>Full name</h5>
+                                                <input type="text" name="name" id="name" class="form-control"
+                                                    placeholder="Enter full name" />
 
                                                 <div class="spacer-10"></div>
-                                                <div class="invalid-feedback">Old password field cannot be blank!</div>
+                                                <div class="invalid-feedback">Full name field cannot be blank!</div>
                                                 <div class="spacer-10"></div>
-                                                <h5>New password</h5>
-                                                <input type="password" name="new-password" id="new-password" class="form-control"
-                                                    placeholder="Enter new password" />
+                                                <h5>Email</h5>
+                                                <input type="text" name="email" id="email" class="form-control"
+                                                    placeholder="Enter your email" />
 
                                                 <div class="spacer-10"></div>
-                                                <div class="invalid-feedback">Please make sure your password contains at least (a
-                                                    Capital
-                                                    letter, a number and a
-                                                    special charcter).</div>
+                                                <div class="invalid-feedback">Please check email again.</div>
                                                 <div class="spacer-10"></div>
 
-                                                <h5>Re-enter new password</h5>
-                                                <input type="password" name="re-password" id="re-password" class="form-control"
-                                                    placeholder="Enter Re-enter new password" />
+                                                <h5>Phone number</h5>
+                                                <input type="text" name="phone" id="phone" class="form-control"
+                                                    placeholder="Enter your phone number" />
 
                                                 <div class="spacer-10"></div>
-                                                <div class="invalid-feedback">Two Passwords are not the same</div>
+                                                <div class="invalid-feedback">Please check phone number again.</div>
                                                 <div class="spacer-10"></div>
                                             </div>
+                                        </div>
+
+                                        <div id="sidebar" class="col-lg-4">
+                                            <h5>Profile image <i class="fa fa-info-circle id-color-2"
+                                                    data-bs-toggle="tooltip" data-bs-placement="top"
+                                                    title="Recommend 400 x 400. Max size: 50MB. Click the image to upload."></i>
+                                            </h5>
+                                            <?php
+                                                $customer_image = Session::get('customer_image');
+                                                if(isset($customer_image) && isset($customer_type)){
+                                            ?>
+                                            <div class="shape">
+                                                <img src="{{ $customer_image}}" id="click_profile_img"
+                                                    class="d-profile-img-edit img-fluid" alt="">
+                                            </div>
+                                            <?php
+                                                }else if(isset($customer_image)){
+                                                ?>
+                                            <div class="shape">
+                                                <img src="{{ asset('uploads/avatar/' . $customer_image . '')}}"
+                                                    id="click_profile_img" class="d-profile-img-edit img-fluid" alt="">
+                                            </div>
+                                            <?php
+                                                }else{
+                                                ?>
+                                            <div class="shape">
+                                                <img src="{{ asset('backend/media/users/blank.png')}}"
+                                                    id="click_profile_img" class="d-profile-img-edit img-fluid" alt="">
+                                            </div>
+                                            <?php
+                                                }
+                                            ?>
+                                            <input onchange="ImagesFileAsURL()" type="file" id="upload_profile_img"
+                                                accept=".png, .jpg, .jpeg">
+
                                         </div>
                                     </div>
                                 </div>
@@ -225,46 +256,66 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
-    document.querySelector('#old-password').addEventListener('blur', validateOldpassword);
-    document.querySelector('#new-password').addEventListener('blur', validateNewpassword);
-    document.querySelector('#renew-password').addEventListener('blur', validateRepassword);
+    function ImagesFileAsURL() {
+        var fileToLoad = $('#upload_profile_img').get(0).files[0];
+        var fileReader = new FileReader();
+        fileReader.onload = function(fileLoaderEvent) {
+            var srcData = fileLoaderEvent.target.result;
+            $('#click_profile_img').attr('src',srcData);
+        }
+        fileReader.readAsDataURL(fileToLoad);
+    }
+    load_profile();
+    function load_profile(){
+        axios.get("load-profile-user")
+            .then(function (response) {
+                $('#name').val(response.data.customer_name);
+                $('#email').val(response.data.customer_email);
+                $('#phone').val(response.data.customer_phone);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    }
+    document.querySelector('#name').addEventListener('blur', validateName);
+    document.querySelector('#email').addEventListener('blur', validateEmail);
+    document.querySelector('#phone').addEventListener('blur', validatePhone);
     const reSpaces = /^\S*$/;
-
-    function validateOldpassword(e) {
-        const password = document.querySelector('#old-password');
-        if (password.value != "") {
-            password.classList.remove('is-invalid');
-            password.classList.add('is-valid');
+    function validateName(e) {
+        const name = document.querySelector('#name');
+        if (name.value != "") {
+            name.classList.remove('is-invalid');
+            name.classList.add('is-valid');
             return true;
         } else {
-            password.classList.remove('is-valid');
-            password.classList.add('is-invalid');
+            name.classList.remove('is-valid');
+            name.classList.add('is-invalid');
             return false;
         }
     }
-    function validateNewpassword() {
-        const password = document.querySelector('#new-password');
-        const re = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})(?=.*[!@#$%^&*])/;
-        if (re.test(password.value) && reSpaces.test(password.value)) {
-            password.classList.remove('is-invalid');
-            password.classList.add('is-valid');
+    function validateEmail(e) {
+        const email = document.querySelector('#email');
+        const re = /^([a-zA-Z0-9_\-?\.?]){3,}@([a-zA-Z]){3,}\.([a-zA-Z]){2,5}$/;
+        if (reSpaces.test(email.value) && re.test(email.value)) {
+            email.classList.remove('is-invalid');
+            email.classList.add('is-valid');
             return true;
         } else {
-            password.classList.add('is-invalid');
-            password.classList.remove('is-valid');
+            email.classList.add('is-invalid');
+            email.classList.remove('is-valid');
             return false;
         }
     }
-    function validateRePassword() {
-        const password = document.querySelector('#new-password');
-        const re_password = document.querySelector('#re-password');
-        if (password.value == re_password.value) {
-            re_password.classList.remove('is-invalid');
-            re_password.classList.add('is-valid');
+    function validatePhone(e) {
+        const phone = document.querySelector('#phone');
+        const re = /^\+?([0-9]{2})\)?[-. ]?([0-9]{4})[-. ]?([0-9]{4})$/;
+        if (reSpaces.test(phone.value) && re.test(phone.value)) {
+            phone.classList.remove('is-invalid');
+            phone.classList.add('is-valid');
             return true;
         } else {
-            re_password.classList.add('is-invalid');
-            re_password.classList.remove('is-valid');
+            phone.classList.add('is-invalid');
+            phone.classList.remove('is-valid');
             return false;
         }
     }
@@ -285,20 +336,44 @@
                 Swal.fire("","Please double check the fields","warning");
             } else {
                 event.preventDefault();
-                axios.post("change-password-user", {
-                    old_pass: $('#old-password').val(),
-                    new_pass: $('#new-password').val(),
+                var form_data = new FormData();
+                form_data.append("image", $('#upload_profile_img').get(0).files[0]);
+                form_data.append("name", $('#name').val());
+                form_data.append("email", $('#email').val());
+                form_data.append("phone", $('#phone').val());
+                axios({
+                    url : 'update-profile-user',
+                    method : 'POST',
+                    data: form_data,
+                    headers: {
+                        'cache': false,
+                        'Content-Type' : false,
+                        'processData': false,
+                    },
+                    withCredentials: true,
                 })
                 .then(function (response) {
-                    switch(response.data) {
-                        case 0:
-                            Swal.fire('','Old password is not correct','warning')
-                            break;
-                        case 1:
-                            Swal.fire('','Change password successfully','warning')
-                            break;
+                    if (response.data == 0) {
+                        Swal.fire("", "This email has been used then!", "warning");
+                    } else if (response.data == 1) {
+                        Swal.fire("", "This phone number has been used then!", "warning");
+                    }else if (response.data == 2) {
+                        Swal.fire({
+                            text: "Update information successfully",
+                            icon: "success",
+                            showCancelButton: false,
+                            confirmButtonText: "Ok!",
+                        })
+                        .then(function(result) {
+                            if (result.value) {
+                                location.reload();
+                            }
+                        });
                     }
                 })
+                .catch(function (error) {
+                    console.log(error);
+                });
             }
         },
         false

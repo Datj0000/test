@@ -106,7 +106,6 @@
                                         <li><a href="#" id="logout"><i class="fa fa-sign-out"></i> Sign out</a>
                                     </ul>
                                 </div>
-                                <span id="menu-btn"></span>
                             </div>
                             <?php
                             }

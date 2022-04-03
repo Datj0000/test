@@ -1,28 +1,5 @@
 @extends('userlayout')
 @section('content')
-<style>
-    .shape {
-        width: 200px;
-        height: 200px;
-        -webkit-clip-path: circle(50% at 50% 50%);
-        clip-path: circle(50% at 50% 50%);
-        shape-outside: circle(50% at 50% 50%);
-        border-radius: 50%;
-        border: 1px solid black;
-    }
-
-    .shape img {
-        width: 100%;
-        height: 100%;
-    }
-
-    @media screen and (max-width: 374.98px) {
-        .shape {
-            width: 100px;
-            height: 100px;
-        }
-    }
-</style>
 <!-- header begin -->
 <header class="transparent">
     <div class="container">
@@ -134,11 +111,10 @@
                             }
                             else {
                             ?>
-                            <div class="menu_side_area">
-                                <a href="{{ URL::to('/login') }}" class="btn-main btn-wallet"><span>Login</span></a>
-                                <a href="{{ URL::to('/register') }}" class="btn-main btn-wallet"><span>Register</span></a>
-                                <span id="menu-btn"></span>
-                            </div>
+                            <a href="{{ URL::to('/login') }}" class="btn-main btn-wallet"><i
+                                    class="icon_wallet_alt"></i><span>Login</span></a>
+                            <a href="{{ URL::to('/register') }}" class="btn-main btn-wallet"><i
+                                    class="icon_wallet_alt"></i><span>Register</span></a>
                             <?php
                             }
                             ?>
@@ -160,7 +136,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12 text-center">
-                        <h1>Change your password</h1>
+                        <h1>Transaction history</h1>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -168,142 +144,57 @@
         </div>
     </section>
     <!-- section close -->
-
-
     <!-- section begin -->
     <section id="section-main" aria-label="section">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <form id="form-create-item" class="form-border needs-validation">
-                        <div class="de_tab tab_simple">
-                            <div class="de_tab_content">
-                                <div class="tab-1">
-                                    <div class="row wow fadeIn">
-                                        <div class="col-lg-12 mb-sm-20">
-                                            <div class="field-set">
-                                                <h5>Old password</h5>
-                                                <input type="password" name="old-password" id="old-password" class="form-control"
-                                                    placeholder="Enter old password" />
-
-                                                <div class="spacer-10"></div>
-                                                <div class="invalid-feedback">Old password field cannot be blank!</div>
-                                                <div class="spacer-10"></div>
-                                                <h5>New password</h5>
-                                                <input type="password" name="new-password" id="new-password" class="form-control"
-                                                    placeholder="Enter new password" />
-
-                                                <div class="spacer-10"></div>
-                                                <div class="invalid-feedback">Please make sure your password contains at least (a
-                                                    Capital
-                                                    letter, a number and a
-                                                    special charcter).</div>
-                                                <div class="spacer-10"></div>
-
-                                                <h5>Re-enter new password</h5>
-                                                <input type="password" name="re-password" id="re-password" class="form-control"
-                                                    placeholder="Enter Re-enter new password" />
-
-                                                <div class="spacer-10"></div>
-                                                <div class="invalid-feedback">Two Passwords are not the same</div>
-                                                <div class="spacer-10"></div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="de_tab tab_simple">
+                        <ul class="de_nav">
+                            <li onclick="load_recharge()" class="active"><span><i class="fa fa-user"></i>Recharge history</span></li>
+                            <li onclick="load_without()"><span><i class="fa fa-sign-out"></i>Without history</span></li>
+                            <li onclick="load_package()"><span><i class="fa fa-exclamation-circle"></i>Package purchase history</span></li>
+                        </ul>
+                        <div class="de_tab_content">
+                            <div class="col-lg-12 mb-sm-20" id="view_history">
                             </div>
                         </div>
-                        <div class="spacer-30"></div>
-                        <input type="submit" id="submit" class="btn-main" value="Update profile">
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
 </div>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
-    document.querySelector('#old-password').addEventListener('blur', validateOldpassword);
-    document.querySelector('#new-password').addEventListener('blur', validateNewpassword);
-    document.querySelector('#renew-password').addEventListener('blur', validateRepassword);
-    const reSpaces = /^\S*$/;
-
-    function validateOldpassword(e) {
-        const password = document.querySelector('#old-password');
-        if (password.value != "") {
-            password.classList.remove('is-invalid');
-            password.classList.add('is-valid');
-            return true;
-        } else {
-            password.classList.remove('is-valid');
-            password.classList.add('is-invalid');
-            return false;
-        }
+    load_recharge();
+    function load_recharge(){
+        axios.get("load-recharge")
+        .then(function(response) {
+            $("#view_history").html(response.data)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
-    function validateNewpassword() {
-        const password = document.querySelector('#new-password');
-        const re = /(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{8,})(?=.*[!@#$%^&*])/;
-        if (re.test(password.value) && reSpaces.test(password.value)) {
-            password.classList.remove('is-invalid');
-            password.classList.add('is-valid');
-            return true;
-        } else {
-            password.classList.add('is-invalid');
-            password.classList.remove('is-valid');
-            return false;
-        }
+    function load_without(){
+        axios.get("load-without")
+        .then(function(response) {
+            $("#view_history").html(response.data)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
-    function validateRePassword() {
-        const password = document.querySelector('#new-password');
-        const re_password = document.querySelector('#re-password');
-        if (password.value == re_password.value) {
-            re_password.classList.remove('is-invalid');
-            re_password.classList.add('is-valid');
-            return true;
-        } else {
-            re_password.classList.add('is-invalid');
-            re_password.classList.remove('is-valid');
-            return false;
-        }
+    function load_package(){
+        axios.get("load-package")
+        .then(function(response) {
+            $("#view_history").html(response.data)
+        })
+        .catch((error) => {
+            console.log(error);
+        });
     }
-    (function () {
-    const forms = document.querySelectorAll('.needs-validation');
-    for (let form of forms) {
-        form.addEventListener(
-        'submit',
-        function (event) {
-            if (
-            !form.checkValidity() ||
-            !validateEmail() ||
-            !validateName() ||
-            !validatePhone()
-            ) {
-                event.preventDefault();
-                event.stopPropagation();
-                Swal.fire("","Please double check the fields","warning");
-            } else {
-                event.preventDefault();
-                axios.post("change-password-user", {
-                    old_pass: $('#old-password').val(),
-                    new_pass: $('#new-password').val(),
-                })
-                .then(function (response) {
-                    switch(response.data) {
-                        case 0:
-                            Swal.fire('','Old password is not correct','warning')
-                            break;
-                        case 1:
-                            Swal.fire('','Change password successfully','warning')
-                            break;
-                    }
-                })
-            }
-        },
-        false
-        );
-    }
-    })();
 </script>
 @endsection

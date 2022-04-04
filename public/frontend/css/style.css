@@ -1249,7 +1249,7 @@ header.header-mobile.header-light #menu-btn {
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
-    z-index: 1000;
+    z-index: 10000;
 }
 
 .dark-scheme .de-submenu {
@@ -1264,7 +1264,6 @@ header.header-mobile.header-light #menu-btn {
 
 .de-submenu.open {
     opacity: 1;
-    z-index: 10000;
 }
 
 .de-submenu .d-balance {

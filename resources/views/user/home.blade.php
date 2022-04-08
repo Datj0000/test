@@ -141,7 +141,7 @@
                         <div class="spacer-10"></div>
                         <h1 class="wow fadeInUp" data-wow-delay=".35s">Fan Pi Network Token</h1>
                         <p class="wow fadeInUp lead" data-wow-delay=".5s">
-                            The coin was created and built by the Pi Network community. <br> Used as peer-to-peer payments.<br> Contract Address: 0x8A751ab17A5E81acf3CcBE2a695f84bF55A3523A
+                            The coin was created and built by the Pi Network community. <br> Used as peer-to-peer payments.<br> Contract Address: 0xBC2C5cb242D24D301816899244ac65b1026E07ec
                         </p>
                         <div class="spacer-10"></div>
                         <a href="#" class="btn-main wow fadeInUp lead" data-wow-delay="1.25s">Explore</a>

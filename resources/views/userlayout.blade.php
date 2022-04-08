@@ -253,7 +253,7 @@
                     })
                     .then(function(result) {
                         if (result.value) {
-                            window.open('https://metamask.io', '_blank');
+                            window.open('https://metamask.io/dowload', '_blank');
                         }
                     });
                 }
@@ -336,7 +336,7 @@
                     })
                     .then(function(result) {
                         if (result.value) {
-                            window.open('https://metamask.io', '_blank');
+                            window.open('https://metamask.io/dowload', '_blank');
                         }
                     });
                 }

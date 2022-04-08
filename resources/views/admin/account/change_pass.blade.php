@@ -33,6 +33,46 @@
 </form>
 
 <script>
+    const strongPassword = function() {
+        return {
+            validate: function(input) {
+                const value = input.value;
+                if (value === "") {
+                    return {
+                        valid: true,
+                    };
+                }
+
+                if (value.length < 8) {
+                    return {
+                        valid: false,
+                    };
+                }
+
+                if (value === value.toLowerCase()) {
+                    return {
+                        valid: false,
+                    };
+                }
+
+                if (value === value.toUpperCase()) {
+                    return {
+                        valid: false,
+                    };
+                }
+
+                if (value.search(/[0-9]/) < 0) {
+                    return {
+                        valid: false,
+                    };
+                }
+
+                return {
+                    valid: true,
+                };
+            },
+        };
+    };
     var validation;
     var form = KTUtil.getById('kt_login_change_form');
     FormValidation.validators.checkPassword = strongPassword;

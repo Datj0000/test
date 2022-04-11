@@ -158,7 +158,7 @@
         <div class="modal-body">
             <div class="p-3 form-border">
                 <h3>Deposit</h3>
-                You are about to purchase a <b>FPI</b> from <b>0xBC2C5cb242D24D301816899244ac65b1026E07</b>
+                You are about to purchase a <b>FPI</b> from <b>0xBC2C5cb242D24D301816899244ac65b1026E07ec</b>
                 <div class="spacer-single"></div>
                 <h6>Enter quantity amount</h6>
                 <input type="number" name="amount" id="inp_amount" class="form-control" value="1" />

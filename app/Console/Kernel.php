@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('attendance:cron')->everyMinute();
+        $schedule->command('attendance:cron')->timezone('Asia/Ho_Chi_Minh')->dailyAt('06:31');
         // php artisan schedule:run list work
     }
 

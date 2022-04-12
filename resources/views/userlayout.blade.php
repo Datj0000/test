@@ -216,6 +216,11 @@
                             web3 = new Web3(window.ethereum);
                             await ethereum.enable();
                             if(window.ethereum.chainId == '0x38'){
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Waiting',
+                                    text: 'Please wait minutes',
+                                })
                                 var amount = $('#inp_amount').val();
                                 const contract = new web3.eth.Contract(abi, contractAddress);
                                 const reciever =  $('#wallet_address').val();

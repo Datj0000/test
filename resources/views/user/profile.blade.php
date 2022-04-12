@@ -116,7 +116,7 @@
                                     <div class="spacer-10"></div>
                                     <div class="d-balance">
                                         <div style="display: flex">
-                                            <button id="btn_copy2"><a href="#" data-bs-toggle="modal" data-bs-target="#payoutmodel">without</a></button>&nbsp;&nbsp;
+                                            <button id="btn_copy2"><a href="#" data-bs-toggle="modal" data-bs-target="#payoutmodel">withdraw</a></button>&nbsp;&nbsp;
                                             <button id="btn_copy3"><a href="#" data-bs-toggle="modal" data-bs-target="#rechargemodel">deposit</a></button>
                                         </div>
                                     </div>

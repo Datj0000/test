@@ -138,14 +138,14 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             <div class="modal-body">
             <div class="p-3 form-border">
-                <h3>Without</h3>
-                It will cost you an extra 1% to make the without
+                <h3>Withdraw</h3>
+                It will cost you an extra 1% to make the withdraw
                 <div class="spacer-single"></div>
                 <h6>Enter quantity amount</h6>
                 <input type="number" name="amount" id="amount_without" class="form-control" value="1" />
                 <div class="spacer-single"></div>
                 <div class="spacer-single"></div>
-                <button id="withoutEthButton" class="btn-main btn-fullwidth">Without</button>
+                <button id="withoutEthButton" class="btn-main btn-fullwidth">Withdraw</button>
             </div>
         </div>
         </div>
@@ -222,8 +222,9 @@
                                 await contract.methods.transfer(reciever, '0x' + ((amount * 1000000000000000000).toString(16)))
                                     .send({from:ethereum.selectedAddress})
                                     .on('receipt',(receipt)=>{
-                                        console.log(receipt)
-                                        storeTransaction(receipt.blockHash, amount, ethereum.selectedAddress, reciever);
+                                        var am = receipt.events.Transfer.returnValues.value / 1000000000000000000;
+                                        console.log(am);
+                                        storeTransaction(receipt.blockHash, am, ethereum.selectedAddress, reciever);
                                     })
                             } else {
                                 ethereum.request({ method: 'wallet_switchEthereumChain', params:[{chainId: '0x38'}]})
@@ -284,14 +285,14 @@
                                             Swal.fire({
                                                 icon: 'success',
                                                 title: 'Success',
-                                                text: 'Without success, please wait minutes',
+                                                text: 'Withdraw success, please wait minutes',
                                             })
                                             break;
                                         case 3:
                                             Swal.fire({
                                                 icon: 'warning',
                                                 title: 'Fail',
-                                                text: 'Without fail',
+                                                text: 'Withdraw fail',
                                             })
                                             break;
                                         case 1:
@@ -307,7 +308,7 @@
                                     Swal.fire({
                                         icon: 'warning',
                                         title: 'Fail',
-                                        text: 'Without fail',
+                                        text: 'Withdraw fail',
                                     })
                                 });
                             } else {

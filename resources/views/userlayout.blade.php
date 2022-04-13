@@ -217,9 +217,9 @@
                             await ethereum.enable();
                             if(window.ethereum.chainId == '0x38'){
                                 Swal.fire({
-                                    icon: 'success',
+                                    icon: 'warning',
                                     title: 'Waiting',
-                                    text: 'Please wait minutes',
+                                    text: 'The transaction is in progress, please do not leave the site',
                                 })
                                 var amount = $('#inp_amount').val();
                                 const contract = new web3.eth.Contract(abi, contractAddress);
@@ -228,7 +228,6 @@
                                     .send({from:ethereum.selectedAddress})
                                     .on('receipt',(receipt)=>{
                                         var am = receipt.events.Transfer.returnValues.value / 1000000000000000000;
-                                        console.log(am);
                                         storeTransaction(receipt.blockHash, am, ethereum.selectedAddress, reciever);
                                     })
                             } else {
@@ -360,7 +359,7 @@
                 Swal.fire({
                     icon: 'success',
                     title: 'Success',
-                    text: 'Payment success',
+                    text: 'Deposit success. If not get money, please re-login or notify admin',
                 })
             })
             .catch((error) => {

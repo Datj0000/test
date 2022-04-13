@@ -92,7 +92,10 @@
                     }
                 },
                 {
-                    'data': 'created_at'
+                    'data': null,
+                    render: function(data, type, row) {
+                        return moment(row.created_at).format('H:mm DD-MM-YYYY');
+                    }
                 },
                 {
                     'data': null,

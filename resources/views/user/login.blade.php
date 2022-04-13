@@ -140,10 +140,12 @@
     function forgotpass() {
         $("#LoginForm").hide();
         $("#ForgotForm").show();
+        $("#ChangePassForm").hide();
     }
     function login() {
         $("#LoginForm").show();
         $("#ForgotForm").hide();
+        $("#ChangePassForm").hide();
     }
     $(document).on('click', '#login', function(e) {
         e.preventDefault()

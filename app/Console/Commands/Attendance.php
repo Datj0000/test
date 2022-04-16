@@ -49,7 +49,7 @@ class Attendance extends Command
         $sum = 0;
         $today = Carbon::now('Asia/Ho_Chi_Minh')->format('Y-m-d');
         $get_buypackage = BuyPackageModel::query()->where('status','=', '0')->get();
-        if($get_buypackage){
+        if($get_buypackage->toArray()){
             foreach($get_buypackage as $key => $item){
                 $customer = CustomerModel::query()->where('id','=',$item->customer_id)->first();
                 if($customer->customer_role == 1){
@@ -99,21 +99,32 @@ class Attendance extends Command
                     $noti2->save();
                 }
                 $check_attendane = AttendanceModel::query()->where('buypackage_id','=',$item->id)->get();
-                if($check_attendane->count() == 7){
+                if($check_attendane->count() == 1){
                     $i++;
                     $sum += $item->package;
                 }
             }
+            $get_wallet_balance = WalletModel::query()->where('created_at','>=',$today)->first();
+            if($get_wallet_balance){
+                $setting = SettingModel::query()->where('id','=',1)->first();
+                if ($i>0) {
+                    $setting->wallet_balance += $get_wallet_balance->wallet_balance/100*20;
+                    $setting->wallet_bonus += $get_wallet_balance->wallet_balance/100*80;
+                } else {
+                    $setting->wallet_bonus += $get_wallet_balance->wallet_balance;
+                }
+                $setting->save();
+            }
             foreach($get_buypackage as $key => $item){
                 $check_attendane2 = AttendanceModel::query()->where('buypackage_id','=',$item->id)->get();
-                if($check_attendane2->count() == 7){
+                if($check_attendane2->count() == 1){
                     $item->status = 2;
                     $item->save();
                     $customer = CustomerModel::query()->where('id','=',$item->customer_id)->first();
                     $noti3 = new NotificationModel();
-                    $get_balance = WalletModel::query()->where('created_at','>=', $today)->first();
-                    if ($get_balance) {
-                        $bonus = $item->package / $sum * $get_balance->wallet_balance/100*80;
+                    $get_balance = SettingModel::query()->where('id','=',1)->first();
+                    if ($get_balance->wallet_bonus > 0) {
+                        $bonus = $item->package / $sum * $get_balance->wallet_bonus;
                         $customer->customer_balance += $item->package + $bonus;
                         $noti3->notification_amount = $item->package + $bonus;
                     } else {
@@ -127,14 +138,9 @@ class Attendance extends Command
                     $noti3->save();
                 }
             }
-        }
-        $get_wallet_balance = WalletModel::query()->where('created_at','>=',$today)->first();
-        if($get_wallet_balance){
             $setting = SettingModel::query()->where('id','=',1)->first();
             if ($i>0) {
-                $setting->wallet_balance += $get_wallet_balance->wallet_balance/100*20;
-            } else {
-                $setting->wallet_balance += $get_wallet_balance->wallet_balance;
+                $setting->wallet_bonus = 0;
             }
             $setting->save();
         }

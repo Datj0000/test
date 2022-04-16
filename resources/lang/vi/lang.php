@@ -5,6 +5,7 @@ return[
     'recharge' => 'Nạp tiền',
     'wallet' => 'Ví',
     'wallet_balance' => 'Số dư ví',
+    'wallet_bonus' => 'Tiền thưởng',
     'wallet_address' => 'Địa chỉ ví Metamask',
     //BuyPackage
     'buypackage' => 'Lịch sử mua gói',

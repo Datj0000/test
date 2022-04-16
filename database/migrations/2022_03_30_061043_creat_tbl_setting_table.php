@@ -17,6 +17,7 @@ class CreatTblSettingTable extends Migration
             $table->id();
             $table->string('wallet_address');
             $table->double('wallet_balance');
+            $table->double('wallet_bonus');
             $table->timestamps();
         });
     }

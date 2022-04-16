@@ -9,7 +9,7 @@ class Setting extends Model
 {
     use HasFactory;
     protected $fillable = [
-    	'wallet_address', 'wallet_balance'
+    	'wallet_address', 'wallet_balance', 'wallet_bonus'
     ];
  	protected $table = 'tbl_setting';
 }

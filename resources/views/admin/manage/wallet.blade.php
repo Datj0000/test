@@ -13,6 +13,13 @@
         <div class="card-body">
             <div class="card-body">
                 <div class="form-group row">
+                    <label class="col-xl-3 col-lg-3 col-form-label">{{__('lang.wallet_bonus')}}:</label>
+                    <div class="col-lg-9 col-xl-6">
+                        <input style="cursor: no-drop" id="wallet_bonus" name="wallet_bonus" readonly class="form-control form-control-lg form-control-solid"
+                            type="text" />
+                    </div>
+                </div>
+                <div class="form-group row">
                     <label class="col-xl-3 col-lg-3 col-form-label">{{__('lang.wallet_balance')}}:</label>
                     <div class="col-lg-9 col-xl-6">
                         <input style="cursor: no-drop" id="wallet_balance" name="wallet_balance" readonly class="form-control form-control-lg form-control-solid"
@@ -56,6 +63,7 @@
             wallet_address: wallet_address,
         })
         .then(function (response) {
+            $('#wallet_bonus').val(response.data.wallet_bonus+ " FPI");
             $('#wallet_balance').val(response.data.wallet_balance+ " FPI");
             $('#wallet_address').val(response.data.wallet_address);
             validation.validate();

@@ -1,10 +1,11 @@
 <?php
 
 return[
-    'without' => 'Without',
+    'without' => 'Withdraw',
     'recharge' => 'Recharge',
     'wallet' => 'Wallet',
     'wallet_balance' => 'Wallet balance',
+    'wallet_bonus' => 'Wallet bonus',
     'wallet_address' => 'Wallet address Metamask',
     //BuyPackage
     'buypackage' => 'Package purchase history',
